@@ -1,0 +1,61 @@
+Заходим в привилегированный режим
+enable или en
+Заходим в режим конфигурирования 
+configure terminal или conf t
+------------------------------------------
+Нам нужно включить 3 интерфейса (FastEthernet 0/1-0/3), 
+поэтому начнем с 0/1 
+int f и нажимаем tab, затем дописываем 0/1 , enter
+активируем его командой
+ no sh и нажимаем tab, потом enter. 
+Теперь этот порт открыт (активен);
+Выходим из настроек интерфейса командой ex и enter;
+--------------------
+Создадим VLAN 10 на коммутаторах:
+vlan 10 (создался VLAN)
+Interface FastEthernet 0/1 (для ПК1), 
+switchport mode access
+switchport access vlan 10
+
+---------------------
+диапазон интерфесов int range fa 0/1-3
+--------------------------
+trunk: 
+interface gigabitEthernet 0/1
+
+switchport mode trunk
+---------------------------
+получить текущую конфигурацию любого устройства
+show running-config
+
+----------------------------------
+
+configure terminal
+enable secret superpass привилегированный режим 
+line console 0
+password cisco
+login
+exit
+line vty 0 15
+password cisco
+login
+ end
+wr
+
+
+---------------
+
+interface vlan 20
+ip address 192.168.20.5 255.255.255.248
+no shutdown
+
+--------------------
+int g 0/1 // Выбор интерфейса
+switchport mode access // Сообщаем системе, что это абонентский порт
+switchport port-security // Активируем функцию switchport port-security на интерфейсе fa 0/1
+switchport port-security maximum 3 // Устанавливаем количество активных MAC-адресов на порт устройства
+
+-----------
+
+storm-control broadcast level 30.00
+

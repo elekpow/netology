@@ -1,0 +1,39 @@
+Заходим в привилегированный режим
+enable или en
+Заходим в режим конфигурирования 
+configure terminal или conf t
+------------------------------------------
+Выберите интерфейс gigabitEthernet0/0/0 и очистите его
+interface gigabitEthernet0/0
+no shut
+no ip address
+---------------
+Настройка интерфейса для сети управления оборудованием
+interface gigabitEthernet0/0/0
+ip address 192.168.1.1 255.255.255.0
+----------------------------
+Настройка сабинтерфейса
+interface gigabitEthernet0/0/0.10
+encapsulation dot1q 10
+ip address 192.168.10.1 255.255.255.0
+description dlyaVlan10
+--------------------------
+сохранить конфигурацию всех устройств командой write или copy run start.
+
+----------------
+Подключение по telnet или ssh называется виртуальным терминалом (vt) 
+
+line vty 0 4	- Configure a terminal line
+password cisco
+service password-encryption
+
+login           -  Enable secure login checking
+
+пароль для enable-режима:8
+enable secret superpass
+
+
+
+
+
+
