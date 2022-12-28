@@ -1,0 +1,22 @@
+Скриншот 1, настройки виртуальных машин vm1 (192.168.123.10) и vm2(192.168.123.11) 
+vm1 имеет два сетевых интрфейса, vm2 только один. Машины в одной сети, ping проходит. 
+
+
+sudo sysctl -w net.ipv4.ip_forward=1
+проверить настроен ли forwading
+sudo sysctl -p /etc/sysctl.conf 
+
+очистить iptables
+sudo iptables -F
+sudo iptables -L
+
+Скриншот 2, настриваю iptables. 
+
+sudo iptables -A FORWARD -j ACCEPT -m conntrack --ctstate ESTABLISHED,RELATED -m comment --comment "established traffic"
+sudo iptables -A FORWARD -j ACCEPT -i enp0s8 -o enp0s3 -m comment --comment "forward"
+sudo iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE -m comment --comment "masquerade"
+
+
+можно перезапустить сеть и проверить работает ли доступ в интренет
+systemctl restart networking
+
