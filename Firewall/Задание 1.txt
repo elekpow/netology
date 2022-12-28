@@ -18,5 +18,5 @@ sudo iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE -m comment --comment
 
 
 можно перезапустить сеть и проверить работает ли доступ в интренет
-systemctl restart networking
+systemctl restart networking 
 
