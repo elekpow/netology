@@ -1,17 +1,6 @@
-sudo iptables -t nat -A PREROUTING -d 192.168.123.10 -p tcp --dport 12322 -j DNAT --to-destination 192.168.123.11:22
+Добавляю два правила, и подключаюсь по внешнему адресу 192.168.0.100 на порт 12322
 
+sudo iptables -t nat -A PREROUTING -d 192.168.0.100 -p tcp --dport 12322 -j DNAT --to-destination 192.168.123.11:22
 
-sudo iptables -I FORWARD 1 -i enp0s8 -o enp0s3 -d 192.168.123.11 -p tcp -m tcp --dport 22 -j ACCEPT
+sudo iptables -I FORWARD 1 -i enp0s3 -o enp0s8 -d 192.168.123.11 -p tcp -m tcp --dport 22 -j ACCEPT
 
-
-
-iptables -t nat -A POSTROUTING -p tcp -m tcp -s 192.168.0.15 --sport 8025 -j SNAT --to-source 10.8.232.111:25
-iptables -t nat -A PREROUTING -p tcp -m tcp -d 10.8.232.111 --dport 25 -j DNAT --to-destination 192.168.0.15:8025
-
-
-iptables -I INPUT 1 -p tcp --dport 12322 -j ACCEPT
-
-
-
-iptables -t nat -A PREROUTING -p tcp -d 192.168.123.10 --dport 12322 -j DNAT --to-destination 192.168.123.11:22       
-iptables -t nat -A POSTROUTING -p tcp --sport 22 --dst 192.168.123.11 -j SNAT --to-source 192.168.123.10:12322
