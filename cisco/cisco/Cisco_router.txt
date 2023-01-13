@@ -33,7 +33,50 @@ login           -  Enable secure login checking
 enable secret superpass
 
 
+------------------------------------
+интернет
+------------------------
 
+    2 интерфейса
+1 -в локальную сеть interface gigabitEthernet0/0/1
+2- в сеть провайдера interface gigabitEthernet0/0/0
 
+conf terminal
+interface gigabitEthernet0/0/0
+ip address 188.144.1.2 255.255.255.252
+no shutdown
+exit
+ip route 0.0.0.0 0.0.0.0 188.144.1.1
+end
+write
 
+ping   188.144.1.1
 
+----------------------
+nat
+----------------------
+
+interface gigabitEthernet0/0/0
+ip nat outside
+exit
+interface gigabitEthernet0/0/1.10 #для саб интерфейса (10 20 30)
+ip nat inside
+end
+
+conf terminal
+
+ip access-list standard FOR-NAT
+permit 192.168.10.0 0.0.0.7
+permit 192.168.20.0 0.0.0.7
+permit 192.168.30.0 0.0.0.7
+
+end
+----------
+show access-lists
+show run
+----------
+conf terminal
+ip nat inside source list FOR-NAT interface gigabitEthernet 0/0/0 overload 
+end
+write
+----------------------------------------------
