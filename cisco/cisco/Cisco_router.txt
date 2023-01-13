@@ -64,12 +64,10 @@ ip nat inside
 end
 
 conf terminal
-
 ip access-list standard FOR-NAT
 permit 192.168.10.0 0.0.0.7
 permit 192.168.20.0 0.0.0.7
 permit 192.168.30.0 0.0.0.7
-
 end
 ----------
 show access-lists
@@ -79,4 +77,24 @@ conf terminal
 ip nat inside source list FOR-NAT interface gigabitEthernet 0/0/0 overload 
 end
 write
+-------------
+show ip nat translations
 ----------------------------------------------
+статичная нат трансляция
+conf terminal
+ip nat inside source static tcp 192.168.30.5 80 188.144.1.2 80
+end
+write
+
+-------------------------------------------
+динамическая маршрутизация , 2 сети 
+
+show ip route
+router rip 
+version 2
+network 188.144.0.0 #все сети
+network 192.168.0.0 #все сети
+no auto-summary 
+do write
+
+----------------------------------
