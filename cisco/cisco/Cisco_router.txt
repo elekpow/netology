@@ -100,10 +100,11 @@ do write
 ----------------------------------
 vpn
 ----------------------------------
+conf terminal
+
 crypto isakmp policy 1
 encryption 3des
 hash md5
-authentication pre-share 
 authentication pre-share 
 lifetime 86400
 
