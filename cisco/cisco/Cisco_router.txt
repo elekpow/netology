@@ -98,3 +98,31 @@ no auto-summary
 do write
 
 ----------------------------------
+vpn
+----------------------------------
+crypto isakmp policy 1
+encryption 3des
+hash md5
+authentication pre-share 
+authentication pre-share 
+lifetime 86400
+
+do  show crypto isakmp policy
+------------
+Настройка аунтификации (Pre-Shared Keys)
+
+crypto isakmp policy 1
+authentication pre-share
+ crypto isakmp key MYKEY address 188.144.0.1
+
+набор преобразования (Transform Set), используемого для защиты наших данных.
+crypto ipsec transform-set <название> esp-3des esp-md5-hmac
+
+оздайте крипто-карту с указанием внешнего ip-адреса интерфейса и привяжите его к интерфейсу.
+crypto map <название> 10 ipsec-isakmp
+set peer 188.144.0.1
+set transform-set <название>
+match address <название access-листа>
+crypto map <название крипто-карты>
+
+show crypto map
