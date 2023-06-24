@@ -12,7 +12,8 @@
 
 - [**Основы работы с командной строкой**](https://github.com/elekpow/netology/blob/main/it-systems-linux/lesson4.md).
 
+---
 
-**свидетельство о прохождении курса:**
+**Свидетельство о прохождении курса:**
 
 <img src="https://github.com/elekpow/netology/blob/main/it-systems-linux/images/cert.jpg" alt="cert.jpg" border="0" width="500">
