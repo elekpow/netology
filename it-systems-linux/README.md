@@ -5,4 +5,4 @@
 - **Типы и назначение операционных систем. ОС Linux**
 - **Основы работы с командной строкой**
 
-![cert.jpg](https://github.com/elekpow/netology/tree/main/it-systems-linux/images/cert.jpg)
+![cert.jpg](https://github.com/elekpow/netology/blob/main/it-systems-linux/images/cert.jpg)
