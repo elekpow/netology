@@ -67,7 +67,7 @@
 
 **Выполнение задания: Задание 2.**
 
-
+![img2.JPG](https://github.com/elekpow/netology/blob/main/it-systems-linux/images/img2.jpg)
 
 
 ---
@@ -86,7 +86,7 @@
 **Выполнение задания: Задание 3.**
 
 
-
+![img1.JPG](https://github.com/elekpow/netology/blob/main/it-systems-linux/images/img3.jpg)
 
 ---
 
@@ -110,6 +110,13 @@
 **Выполнение задания: Задание 4.**
 
 
+```
+﻿hostnamectl | grep 'Operating System' > Levin_lection-4_22-10-14/concept.1; echo Igor Levin >> Levin_lection-4_22-10-14/concept.1 ; echo lection_#4 >> Levin_lection-4_22-10-14/concept.1;cat Levin_lection-4_22-10-14/concept.1 | grep 'Levin'
+
+```
+
+
+![img1.JPG](https://github.com/elekpow/netology/blob/main/it-systems-linux/images/img4.jpg)
 
 
 ---
@@ -130,23 +137,7 @@
 **Выполнение задания: Задание 5.**
 
 
-
-
----
-
-### Задание 6*.
-
-Установите на виртуальную машину **Arch Linux**. Установите программу `neofetch`. Выполните на ней задание 2 (воспользуйтесь `neofetch` для вывода информации о системе).
-
-*Сделайте скриншот информации о системе, выведенной с помощью `neofetch`.*
-
-
----
-
-
-**Выполнение задания: Задание 6.**
+![img1.JPG](https://github.com/elekpow/netology/blob/main/it-systems-linux/images/img5.jpg)
 
 
 
-
----
