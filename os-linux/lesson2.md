@@ -121,7 +121,9 @@
 
  монтирую tmpfs `mount -t tmpfs -o size=1G,nr_inodes=10k,mode=0700 tmpfs /mytmpfs`
 
-с целью сравнить скорости копирования  создаю один файл образа диска в 800 Мб,  `sudo dd if=/dev/zero of=test-1g bs=1M count=800`
+с целью сравнить скорости копирования  создаю один файл образа диска в 800 Мб,  
+
+`sudo dd if=/dev/zero of=test-1g bs=1M count=800`
 
 
 выполняю копирование файла в диреткорию `sudo cp test-1g /mytmpfs `
