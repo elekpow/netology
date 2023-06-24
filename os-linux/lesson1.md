@@ -126,5 +126,3 @@ ps -fU root > user_root_ps
   PID TTY          TIME CMD
 ```
 
-
----   `
