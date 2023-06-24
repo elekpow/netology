@@ -45,7 +45,7 @@
 **Выполнение задания: Задание 1.**
 
 
-![img1.JPG](https://github.com/elekpow/netology/tree/main/it-systems-linux/images/img1.jpg)
+![img1.JPG](https://github.com/elekpow/netology/tree/main/it-systems-linux/images/cert.jpg)
 
 
 ---
