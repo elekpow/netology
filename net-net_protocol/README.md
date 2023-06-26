@@ -4,33 +4,33 @@
 
 **Изучаемые темы:**
 
-- [**Модель OSI/ISO. Обзор сетевых протоколов**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lesson1.md).
+- [**Модель OSI/ISO. Обзор сетевых протоколов**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson1.md).
 
-- [**L2-сеть**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lesson2.md).
+- [**L2-сеть**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson2.md).
 
-- [**L3-сеть**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lesson3.md).
+- [**L3-сеть**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson3.md).
 
-- [**L4-сеть**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lesson4.md).
+- [**L4-сеть**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson4.md).
 
-- [**Построение сети в Cisco Packet Tracer**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lesson14.md).
+- [**Построение сети в Cisco Packet Tracer**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson14.md).
 
-- [**Firewall**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lesson5.md).
+- [**Firewall**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson5.md).
 
-- [**NAT**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lesson6.md).
+- [**NAT**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson6.md).
 
-- [**VPN**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lesson7.md).
+- [**VPN**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson7.md).
 
-- [**Высокоуровневые сетевые протоколы**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lesson8.md).
+- [**Высокоуровневые сетевые протоколы**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson8.md).
 
-- [**Траблшутинг**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lesson9.md).
+- [**Траблшутинг**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson9.md).
 
-- [**DHCP, PXE**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lesson10.md).
+- [**DHCP, PXE**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson10.md).
 
-- [**DNS**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lesson11.md).
+- [**DNS**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson11.md).
 
-- [**HTTP/HTTPS**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lesson12.md).
+- [**HTTP/HTTPS**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson12.md).
 
-- [**IPv6**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lesson13.md).
+- [**IPv6**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson13.md).
 
 
 ---
