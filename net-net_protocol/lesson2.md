@@ -56,6 +56,10 @@
 
 
 
+[l2-1.pkt](https://github.com/elekpow/netology/blob/main/net-net_protocol/packet_tracer/l2-1.pkt)
+
+
+
 На коммутаторах для разделения сетей настроен VLAN. В нашей сети имеем 3 VLAN — это 3 широковещательных домена.
 
 ![img1.jpeg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/img1.jpeg)
@@ -96,6 +100,10 @@
 * Для обмена информацией между собой свичи используют специальные пакеты BPDU , которые и сообщают об изменении топологии сети.
 
 * Использование “резервного канала” позволит в случае не доступности одного из них переключиться на другой. Недостатком является долго время ,которое нужно для определения топологии сети и переключения на доступный порт
+
+
+
+[l2-1.pkt](https://github.com/elekpow/netology/blob/main/net-net_protocol/packet_tracer/l2-1.pkt)
 
 ![img2.jpeg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/img2.jpeg)
 
