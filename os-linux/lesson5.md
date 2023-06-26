@@ -119,7 +119,7 @@
 * Скриншот1
 ![img18.JPG](https://github.com/elekpow/netology/blob/main/os-linux/images/img18.jpg)
 
-* Скриншот1
+* Скриншот2
 
 ![img19.JPG](https://github.com/elekpow/netology/blob/main/os-linux/images/img19.jpg)
 
