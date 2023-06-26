@@ -56,7 +56,7 @@
 
 
 
-[l2-1.pkt](https://github.com/elekpow/netology/blob/main/net-net_protocol/packet_tracer/l2-1.pkt)
+Файл Packet tracer [l2-1.pkt](https://github.com/elekpow/netology/blob/main/net-net_protocol/packet_tracer/l2-1.pkt)
 
 
 
@@ -103,7 +103,7 @@
 
 
 
-[l2-1.pkt](https://github.com/elekpow/netology/blob/main/net-net_protocol/packet_tracer/l2-1.pkt)
+Файл Packet tracer [l2-2.pkt](https://github.com/elekpow/netology/blob/main/net-net_protocol/packet_tracer/l2-2.pkt)
 
 ![img2.jpeg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/img2.jpeg)
 
