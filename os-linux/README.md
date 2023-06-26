@@ -4,19 +4,19 @@
 
 **Изучаемые темы:**
 
-- [**Процессы, управление процессами**](https://github.com/elekpow/netology/blob/main/it-systems-linux/lesson1.md).
+- [**Процессы, управление процессами**](https://github.com/elekpow/netology/blob/main/os-linux/lesson1.md).
 
-- [**Память, управление памятью**](https://github.com/elekpow/netology/blob/main/it-systems-linux/lesson2.md).
+- [**Память, управление памятью**](https://github.com/elekpow/netology/blob/main/os-linux/lesson2.md).
 
-- [**Шедулер**](https://github.com/elekpow/netology/blob/main/it-systems-linux/lesson3.md).
+- [**Шедулер**](https://github.com/elekpow/netology/blob/main/os-linux/lesson3.md).
 
-- [**Дисковые системы**](https://github.com/elekpow/netology/blob/main/it-systems-linux/lesson4.md).
+- [**Дисковые системы**](https://github.com/elekpow/netology/blob/main/os-linux/lesson4.md).
 
-- [**Файловые системы**](https://github.com/elekpow/netology/blob/main/it-systems-linux/lesson4.md).
+- [**Файловые системы**](https://github.com/elekpow/netology/blob/main/os-linux/lesson5.md).
 
-- [**Ядро операционной системы**](https://github.com/elekpow/netology/blob/main/it-systems-linux/lesson4.md).
+- [**Ядро операционной системы**](https://github.com/elekpow/netology/blob/main/os-linux/lesson6.md).
 
-- [**Загрузка ОС**](https://github.com/elekpow/netology/blob/main/it-systems-linux/lesson4.md).
+- [**Загрузка ОС**](https://github.com/elekpow/netology/blob/main/os-linux/lesson7.md).
 
 
 
@@ -24,4 +24,4 @@
 
 **Свидетельство о прохождении курса:**
 
-<img src="https://github.com/elekpow/netology/blob/main/it-systems-linux/images/cert.jpg" alt="cert.jpg" border="0" width="500">
+<img src="https://github.com/elekpow/netology/blob/main/os-linux/images/cert.jpg" alt="cert.jpg" border="0" width="500">
