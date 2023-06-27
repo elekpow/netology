@@ -181,7 +181,9 @@ write
 ```
 
 -------------
+
 `show ip nat translations`
+
 ----------------------------------------------
 
 ### статичная нат трансляция
@@ -219,9 +221,13 @@ group 2
 lifetime 86400
 exit
 ```
+
 ---
+
 `crypto isakmp key cisco address 188.144.0.2` **публичный адрес другой сети**
+
 ---
+
 ```
 ip access-list extended VPN
 permit ip 192.168.5.0 0.0.0.15 192.168.0.0 0.0.0.15 //внутренняя сеть 
@@ -244,7 +250,7 @@ crypto map CMAP
 exit
 ```
 
-**/////////////**
+--------
 
 ```
 ip nat inside source list 100 interface gigabitEthernet 0/0/0 overload
@@ -268,6 +274,7 @@ exit
 ---
 
 `crypto isakmp key cisco address 87.250.0.2`
+
 ---
 
 ```
@@ -285,8 +292,8 @@ interface gigabitEthernet 0/0/0
 crypto map CMAP
 ```
 
+--------
 
-**/////////////**
 
 ```
 ip nat inside source list 100 interface gigabitEthernet 0/0/0 overload
