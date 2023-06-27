@@ -68,6 +68,11 @@
 
 ---
 
+
+Файл packet tracer [сеть.pkt](https://github.com/elekpow/netology/blob/main/net-net_protocol/conf/сеть.pkt)
+
+
+
 ### Cisco router
 
 * Заходим в привилегированный режим
