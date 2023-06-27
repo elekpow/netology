@@ -20,15 +20,15 @@
 
 * Запускаем **Cisco Packet Tracer**. Настраиваем `telnet` и подключаемся к маршрутизатору. Момент, когда процесс трёхстороннего рукопожатия между ПК и маршрутизатором окончен и TCP-соединение установлено.
 
-![L4-1.JPG(https://github.com/elekpow/netology/blob/main/net-net_protocol/images/L4-1.JPG)
+![L4-1.jpeg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/L4-1.jpeg)
 
 * После настройки **telnet**, и подключения к маршрутизатору, смотрим все **tcp** сединения командой `show tcp`, которая показывает всю подробную статистику о всех открытых соединениях.
 
-![L4-1_tcp.JPG](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/L4-1_tcp.JPG)
+![L4-1_tcp.jpeg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/L4-1_tcp.jpeg)
 
 Находясь в режиме симуляции, при завершении сеанса **telnet** на ПК, в момент, когда процесс TCP-соединения окончен , мы видим что от маршрутизатора пришло сообщение TCP FIN+ACK , и соединение переходит в состояние закрыто 
 
-![L4-1_tcp_2.JPG](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/L4-1_tcp_2.JPG)
+![L4-1_tcp_2.jpeg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/L4-1_tcp_2.jpeg)
 
 
 ---
@@ -56,7 +56,7 @@
 
 * Что бы инициализировать в сети процесс отправки UDP-сообщений, можно воспользоваться программой `nslookup`, которая позволяет получить доменное имя, ip адрес и другую информацию из DNS записей. Запрос отправляется по UDP.
 
-![L4-1_udp.JPG](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/L4-1_udp.JPG)
+![L4-1_udp.jpeg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/L4-1_udp.jpeg)
 
 Отправим запрос к компьютеру `192.168.10.3`, и получаем некоторую информацию. Запрос отправляется с порта **1025** по UDP, на порт **53** (dns).
 
