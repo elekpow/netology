@@ -31,6 +31,35 @@
 ![Задание 1 - Скриншот 1.jpeg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/screeen1.jpeg)
 
 
+* настройки виртуальных машин `vm1 (192.168.123.10) и vm2(192.168.123.11) `
+**vm1** имеет два сетевых интрфейса, **vm2** только один. Машины в одной сети, ping проходит. 
+
+```
+sudo sysctl -w net.ipv4.ip_forward=1
+```
+проверить настроен ли forwading
+```
+sudo sysctl -p /etc/sysctl.conf 
+```
+очистить iptables
+```
+sudo iptables -F
+sudo iptables -L
+```
+
+![Задание 1 - Скриншот 2.jpeg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/screeen1-2.jpeg)
+
+настриваю iptables. 
+```
+sudo iptables -A FORWARD -j ACCEPT -m conntrack --ctstate ESTABLISHED,RELATED -m comment --comment "established traffic"
+sudo iptables -A FORWARD -j ACCEPT -i enp0s8 -o enp0s3 -m comment --comment "forward"
+sudo iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE -m comment --comment "masquerade"
+```
+
+можно перезапустить сеть и проверить работает ли доступ в интренет
+```
+systemctl restart networking 
+```
 
 ---
 
@@ -51,8 +80,15 @@
 --- 
 **Выполнение задания: Задание 2.**
 
-
 ---
 
+* Добавляю два правила, и подключаюсь по внешнему адресу 192.168.0.100 на порт 12322 (скриншот 2)
+
+```
+ iptables -t nat -A PREROUTING -d 192.168.0.100 -p tcp --dport 12322 -j DNAT --to-destination 192.168.123.11:22
+ iptables -I FORWARD 1 -i enp0s3 -o enp0s8 -d 192.168.123.11 -p tcp -m tcp --dport 22 -j ACCEPT
+```
+
+![Задание 1 - Скриншот 2.jpeg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/screeen2.jpeg)
 
 
