@@ -58,8 +58,11 @@
 
 --------------------
 `int g 0/1` **// Выбор интерфейса**
+
 `switchport mode access` **// Сообщаем системе, что это абонентский порт**
+
 `switchport port-security` **// Активируем функцию switchport port-security на интерфейсе fa 0/1**
+
 `switchport port-security maximum 3` **// Устанавливаем количество активных MAC-адресов на порт устройства**
 
 -----------
@@ -90,10 +93,12 @@
 `ip address 192.168.1.1 255.255.255.0`
 ----------------------------
 * Настройка сабинтерфейса
-`interface gigabitEthernet0/0/0.10`
-`encapsulation dot1q 10`
-`ip address 192.168.10.1 255.255.255.0`
-`description dlyaVlan10`
+```
+interface gigabitEthernet0/0/0.10
+encapsulation dot1q 10
+ip address 192.168.10.1 255.255.255.0
+description dlyaVlan10
+```
 --------------------------
 * сохранить конфигурацию всех устройств командой `write` или `copy run start`.
 
@@ -101,12 +106,15 @@
 * Подключение по telnet или ssh называется виртуальным терминалом (vt)
 
 `line vty 0 4`	- Configure a terminal line
+
 `password cisco`
+
 `service password-encryption`
 
 `login`           -  Enable secure login checking
 
 * пароль для enable-режима:8
+
 `enable secret superpass`
 
 
@@ -115,17 +123,22 @@
 ------------------------
 
 * 2 интерфейса
+
 * 1 -в локальную сеть  `interface gigabitEthernet0/0/1`
+
 * 2- в сеть провайдера `interface gigabitEthernet0/0/0`
 
-`conf terminal`
-`interface gigabitEthernet0/0/0`
-`ip address 188.144.1.2 255.255.255.252`
-`no shutdown`
-`exit`
-`ip route 0.0.0.0 0.0.0.0 188.144.1.1`
-`end`
-`write`
+```
+conf terminal
+interface gigabitEthernet0/0/0
+ip address 188.144.1.2 255.255.255.252
+no shutdown
+exit
+ip route 0.0.0.0 0.0.0.0 188.144.1.1
+end
+write
+
+```
 
 ping   188.144.1.1
 
@@ -133,37 +146,49 @@ ping   188.144.1.1
 ### nat
 ----------------------
 
-`interface gigabitEthernet0/0/0`
-`ip nat outside`
-`exit`
-`interface gigabitEthernet0/0/1.10` #для саб интерфейса (10 20 30)
-`ip nat inside`
-`end`
+```
+interface gigabitEthernet0/0/0
+ip nat outside
+exit
+interface gigabitEthernet0/0/1.10` #для саб интерфейса (10 20 30)
+ip nat inside
+end
 
-`conf terminal`
-`ip access-list standard FOR-NAT`
-`permit 192.168.10.0 0.0.0.7`
-`permit 192.168.20.0 0.0.0.7`
-`permit 192.168.30.0 0.0.0.7`
-`end`
+```
+
+```
+conf terminal
+ip access-list standard FOR-NAT
+permit 192.168.10.0 0.0.0.7
+permit 192.168.20.0 0.0.0.7
+permit 192.168.30.0 0.0.0.7
+end
+```
 ----------
+
 `show access-lists`
+
 `show run`
+
 ----------
-`conf terminal`
-`ip nat inside source list FOR-NAT interface gigabitEthernet 0/0/0 overload `
-`end`
-`write`
+```
+conf terminal
+ip nat inside source list FOR-NAT interface gigabitEthernet 0/0/0 overload
+end
+write
+```
+
 -------------
 `show ip nat translations`
 ----------------------------------------------
 
 ### статичная нат трансляция
-
-`conf terminal`
-`ip nat inside source static tcp 192.168.30.5 80 188.144.1.2 80`
-`end`
-`write`
+```
+conf terminal
+ip nat inside source static tcp 192.168.30.5 80 188.144.1.2 80
+end
+write
+```
 
 -------------------------------------------
 ### динамическая маршрутизация , 2 сети 
