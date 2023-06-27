@@ -220,15 +220,17 @@ lifetime 86400
 exit
 ```
 ---
-`crypto isakmp key cisco address 188.144.0.2` #публичный адрес другой сети
+`crypto isakmp key cisco address 188.144.0.2` **публичный адрес другой сети**
 ---
 ```
 ip access-list extended VPN
-permit ip 192.168.5.0 0.0.0.15 192.168.0.0 0.0.0.15 # внутренняя сеть 
+permit ip 192.168.5.0 0.0.0.15 192.168.0.0 0.0.0.15 //внутренняя сеть 
 exit
 ```
 ---
+
 `crypto ipsec transform-set TS esp-3des esp-md5-hmac`
+
 ---
 
 ```
