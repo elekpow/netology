@@ -85,11 +85,11 @@
 `no shut`
 `no ip address`
 ---------------
-**Настройка интерфейса для сети управления оборудованием**
+* Настройка интерфейса для сети управления оборудованием
 `interface gigabitEthernet0/0/0`
 `ip address 192.168.1.1 255.255.255.0`
 ----------------------------
-**Настройка сабинтерфейса**
+* Настройка сабинтерфейса
 `interface gigabitEthernet0/0/0.10`
 `encapsulation dot1q 10`
 `ip address 192.168.10.1 255.255.255.0`
@@ -98,7 +98,7 @@
 * сохранить конфигурацию всех устройств командой `write` или `copy run start`.
 
 ----------------
-**Подключение по telnet или ssh называется виртуальным терминалом (vt)**
+* Подключение по telnet или ssh называется виртуальным терминалом (vt)
 
 `line vty 0 4`	- Configure a terminal line
 `password cisco`
@@ -106,7 +106,7 @@
 
 `login`           -  Enable secure login checking
 
-**пароль для enable-режима:8**
+* пароль для enable-режима:8
 `enable secret superpass`
 
 
@@ -114,9 +114,9 @@
 ## интернет
 ------------------------
 
-**2 интерфейса**
-**1 -в локальную сеть** `interface gigabitEthernet0/0/1`
-**2- в сеть провайдера** `interface gigabitEthernet0/0/0`
+* 2 интерфейса
+* 1 -в локальную сеть  `interface gigabitEthernet0/0/1`
+* 2- в сеть провайдера `interface gigabitEthernet0/0/0`
 
 `conf terminal`
 `interface gigabitEthernet0/0/0`
@@ -136,7 +136,7 @@ ping   188.144.1.1
 `interface gigabitEthernet0/0/0`
 `ip nat outside`
 `exit`
-`interface gigabitEthernet0/0/1.10` **#для саб интерфейса (10 20 30)**
+`interface gigabitEthernet0/0/1.10` #для саб интерфейса (10 20 30)
 `ip nat inside`
 `end`
 
@@ -193,7 +193,7 @@ lifetime 86400
 exit
 ```
 ---
-`crypto isakmp key cisco address 188.144.0.2` **#публичный адрес другой сети**
+`crypto isakmp key cisco address 188.144.0.2` #публичный адрес другой сети
 ---
 ```
 ip access-list extended VPN
