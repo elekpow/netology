@@ -70,18 +70,18 @@
 
 Файл Packet tracer [VPN-1.pkt](https://github.com/elekpow/netology/blob/main/net-net_protocol/packet_tracer/VPN-1.pkt)
 
-![VPN-1.JPG](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/VPN-1.JPG)
+![VPN-1.jpeg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/VPN-1.jpeg)
 
 
-![VPN-2.JPG](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/VPN-2.JPG)
+![VPN-2.jpeg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/VPN-2.jpeg)
 
 
 * на скриншотах "VPN-Filial_cryptomap.JPG" и "VPN-HadOffice_cryptomap.JPG" вывод команды `show crypto map`
 
-![VPN-Filial_cryptomap.JPG](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/VPN-Filial_cryptomap.JPG)
+![VPN-Filial_cryptomap.jpeg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/VPN-Filial_cryptomap.jpeg)
 
 
-![VPN-HadOffice_cryptomap.JPG](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/VPN-HadOffice_cryptomap.JPG)
+![VPN-HadOffice_cryptomap.jpeg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/VPN-HadOffice_cryptomap.jpeg)
 
 
 
