@@ -69,7 +69,7 @@
 ---
 
 
-Файл packet tracer [сеть.pkt](https://github.com/elekpow/netology/blob/main/net-net_protocol/conf/сеть.pkt)
+Файл packet tracer [network.pkt](https://github.com/elekpow/netology/blob/main/net-net_protocol/conf/network.pkt)
 
 
 
