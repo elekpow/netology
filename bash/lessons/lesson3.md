@@ -35,6 +35,9 @@
 ^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$
 ```
 
+Скрипт 1 [address.txt](https://github.com/elekpow/netology/blob/main/bash/scripts/address.txt)
+
+
 
 ![img7.jpg](https://github.com/elekpow/netology/blob/main/bash/images/img7.jpg)
 

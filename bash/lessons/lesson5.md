@@ -42,6 +42,9 @@ done
 **Выполнение задания 1.**
 
 
+Скрипт 1 [homeworks_script.sh](https://github.com/elekpow/netology/blob/main/bash/scripts/homeworks_script.sh)
+
+
 
 ![img16.jpg](https://github.com/elekpow/netology/blob/main/bash/images/img16.jpg)
 
@@ -139,6 +142,9 @@ fi
 ---
 
 **Выполнение задания 2*.**
+
+
+Скрипт 2 [homeworks_script_nt.sh](https://github.com/elekpow/netology/blob/main/bash/scripts/homeworks_script_nt.sh)
 
 
 
