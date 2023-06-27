@@ -132,5 +132,5 @@ location / {
 ***Веб сервер Apache работает по ssl**
 
 
-![img7.jpg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/img7.jpg)
+![img_7.jpg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/img_7.jpg)
 
