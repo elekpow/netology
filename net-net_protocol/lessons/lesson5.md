@@ -28,7 +28,7 @@
 --- 
 **Выполнение задания: Задание 1.**
 
-![Задание 1 - Скриншот 1.jpeg]("https://github.com/elekpow/netology/blob/main/net-net_protocol/images/screeen1.jpeg")
+![Задание 1 - Скриншот 1.jpeg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/screeen1.jpeg)
 
 
 
