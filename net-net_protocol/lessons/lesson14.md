@@ -38,24 +38,26 @@
 
 ----------------------------------
 
-`configure terminal`
-`enable secret superpass` **привилегированный режим **
-`line console 0`
-`password cisco`
-`login`
-`exit`
-`line vty 0 15`
-`password cisco`
-`login`
-`end`
-`wr`
-
+```
+configure terminal
+enable secret superpass //привилегированный режим 
+line console 0
+password cisco
+login
+exit
+line vty 0 15
+password cisco
+login
+end
+wr
+```
 ---------------
+```
+interface vlan 20
+ip address 192.168.20.5 255.255.255.248
+no shutdown
 
-`interface vlan 20`
-`ip address 192.168.20.5 255.255.255.248`
-`no shutdown`
-
+```
 --------------------
 `int g 0/1` **// Выбор интерфейса**
 
