@@ -106,7 +106,7 @@
 ---
 **Выполнение  задания 4**
 
-![img1.jpg](https://github.com/elekpow/netology/blob/main/virtual/images/img1.jpg)
+![img1.jpg](https://github.com/elekpow/netology/blob/main/vitual/images/img1.jpg)
 
 ![img2.jpg](https://github.com/elekpow/netology/blob/main/virtual/images/img2.jpg)
 
