@@ -12,7 +12,7 @@
 
 - [**L4-сеть**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson4.md).
 
-- [**Построение сети в Cisco Packet Tracer**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson14.md).
+- [**(Практика) Построение сети в Cisco Packet Tracer**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson14.md).
 
 - [**Firewall**](https://github.com/elekpow/netology/blob/main/net-net_protocol/lessons/lesson5.md).
 
