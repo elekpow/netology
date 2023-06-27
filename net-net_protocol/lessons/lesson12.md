@@ -133,4 +133,3 @@ location / {
 
 
 ![img_7.jpg](https://github.com/elekpow/netology/blob/main/net-net_protocol/images/img_7.jpg)
-
