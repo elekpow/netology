@@ -4,7 +4,7 @@
 
 **Изучаемые темы:**
 
-- [**Виртуализация и облачные решения. AWS, GCP, Яндекс.Облако, Openstack**](https://github.com/elekpow/netology/blob/main/virtual/lessons/lesson1.md).
+- [**Виртуализация и облачные решения. AWS, GCP, Яндекс.Облако, Openstack**](https://github.com/elekpow/netology/blob/main/sflt-1/lessons/lesson1.md).
 
 - [**Типы виртуализаций KVM, QEMU**](https://github.com/elekpow/netology/blob/main/virtual/lessons/lesson2.md).
 
