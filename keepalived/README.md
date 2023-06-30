@@ -1,21 +1,18 @@
- # Виртуализация
+ # Отказоустойчивость
 
-**Период прохождения курса:** 13 марта — 30 марта 2023
+**Период прохождения курса:** 29 мая — 16 июня 2023
 
 **Изучаемые темы:**
 
-- [**Виртуализация и облачные решения. AWS, GCP, Яндекс.Облако, Openstack**](https://github.com/elekpow/netology/blob/main/virtual/lessons/lesson1.md).
+- [**Disaster Recovery. FHRP и Keepalived**](https://github.com/elekpow/netology/blob/main/keepalived/sflt-1/README.md).
 
-- [**Типы виртуализаций KVM, QEMU**](https://github.com/elekpow/netology/blob/main/virtual/lessons/lesson2.md).
+- [**Кластеризация и балансировка нагрузки**](https://github.com/elekpow/netology/blob/main/keepalived/sflt-2/README.md).
 
-- [**Docker**](https://github.com/elekpow/netology/blob/main/virtual/lessons/lesson3.md).
+- [**Резервное копирование**](https://github.com/elekpow/netology/blob/main/keepalived/sflt-3/README.md).
 
-- [**Docker. Часть 2**](https://github.com/elekpow/netology/blob/main/virtual/lessons/lesson4.md).
+- [**Docker. Часть 2**](https://github.com/elekpow/netology/blob/main/keepalived/sflt-4/README.md).
 
-- [**Kubernetes**](https://github.com/elekpow/netology/blob/main/virtual/lessons/lesson5.md).
-
-- [**Kubernetes. Часть 2**](https://github.com/elekpow/netology/blob/main/virtual/lessons/lesson6.md).
-
+- [**Отказоустойчивость в облаке**](https://github.com/elekpow/netology/blob/main/keepalived/sflt-5/README.md)
 
 
 
@@ -28,4 +25,4 @@
 
 **Свидетельство о прохождении курса:**
 
-<img src="https://github.com/elekpow/netology/blob/main/virtual/images/cert.jpg" alt="cert.jpg" border="0" width="500">
+<img src="https://github.com/elekpow/netology/blob/main/keepalived/images/cert.jpg" alt="cert.jpg" border="0" width="500">
