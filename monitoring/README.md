@@ -4,7 +4,7 @@
 
 **Изучаемые темы:**
 
-- [**Обзор систем ИТ-мониторинга**](https://github.com/elekpow/netology/blob/main/monitoring/lesson1.md).
+- [**Обзор систем ИТ-мониторинга**](https://github.com/elekpow/netology/blob/main/monitoring/hw-lesson1.md).
 
 - [**Система мониторинга Zabbix**](https://github.com/elekpow/netology/blob/main/monitoring/lesson2.md).
 
@@ -13,10 +13,6 @@
 - [**Система мониторинга Prometheus**](https://github.com/elekpow/netology/blob/main/monitoring/lesson4.md).
 
 - [**Система мониторинга Prometheus. Часть 2**](https://github.com/elekpow/netology/blob/main/monitoring/lesson5.md).
-
-- [**Ядро операционной системы**](https://github.com/elekpow/netology/blob/main/monitoring/lesson6.md).
-
-- [**Загрузка ОС**](https://github.com/elekpow/netology/blob/main/monitoring/lesson7.md).
 
 
 
