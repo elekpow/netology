@@ -10,9 +10,7 @@
 
 - [**Резервное копирование**](https://github.com/elekpow/netology/blob/main/keepalived/sflt-3/README.md).
 
-- [**Docker. Часть 2**](https://github.com/elekpow/netology/blob/main/keepalived/sflt-4/README.md).
-
-- [**Отказоустойчивость в облаке**](https://github.com/elekpow/netology/blob/main/keepalived/sflt-5/README.md)
+- [**Отказоустойчивость в облаке**](https://github.com/elekpow/netology/blob/main/keepalived/sflt-4/README.md)
 
 
 
