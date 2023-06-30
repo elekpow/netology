@@ -4,17 +4,17 @@
 
 **Изучаемые темы:**
 
-- [**Виртуализация и облачные решения. AWS, GCP, Яндекс.Облако, Openstack**](https://github.com/elekpow/netology/blob/main/sflt-1/lessons/lesson1.md).
+- [**Виртуализация и облачные решения. AWS, GCP, Яндекс.Облако, Openstack**](https://github.com/elekpow/netology/blob/main/keepalived/lessons/lesson1.md).
 
-- [**Типы виртуализаций KVM, QEMU**](https://github.com/elekpow/netology/blob/main/virtual/lessons/lesson2.md).
+- [**Типы виртуализаций KVM, QEMU**](https://github.com/elekpow/netology/blob/main/keepalived/lessons/lesson2.md).
 
-- [**Docker**](https://github.com/elekpow/netology/blob/main/virtual/lessons/lesson3.md).
+- [**Docker**](https://github.com/elekpow/netology/blob/main/keepalived/lessons/lesson3.md).
 
-- [**Docker. Часть 2**](https://github.com/elekpow/netology/blob/main/virtual/lessons/lesson4.md).
+- [**Docker. Часть 2**](https://github.com/elekpow/netology/blob/main/keepalived/lessons/lesson4.md).
 
-- [**Kubernetes**](https://github.com/elekpow/netology/blob/main/virtual/lessons/lesson5.md).
+- [**Kubernetes**](https://github.com/elekpow/netology/blob/main/keepalived/lessons/lesson5.md).
 
-- [**Kubernetes. Часть 2**](https://github.com/elekpow/netology/blob/main/virtual/lessons/lesson6.md).
+- [**Kubernetes. Часть 2**](https://github.com/elekpow/netology/blob/main/keepalived/lessons/lesson6.md).
 
 
 
