@@ -6,9 +6,9 @@
 
 - [**Обзор систем ИТ-мониторинга**](https://github.com/elekpow/netology/blob/main/monitoring/lesson1.md).
 
-- [**Память, управление памятью**](https://github.com/elekpow/netology/blob/main/monitoring/lesson2.md).
+- [**Система мониторинга Zabbix**](https://github.com/elekpow/netology/blob/main/monitoring/lesson2.md).
 
-- [**Шедулер**](https://github.com/elekpow/netology/blob/main/monitoring/lesson3.md).
+- [**Система мониторинга Zabbix. Часть 2**](https://github.com/elekpow/netology/blob/main/monitoring/lesson3.md).
 
 - [**Дисковые системы**](https://github.com/elekpow/netology/blob/main/monitoring/lesson4.md).
 
