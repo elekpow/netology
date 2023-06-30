@@ -4,18 +4,15 @@
 
 **Изучаемые темы:**
 
-- [**Виртуализация и облачные решения. AWS, GCP, Яндекс.Облако, Openstack**](https://github.com/elekpow/netology/blob/main/keepalived/lessons/lesson1.md).
+- [**Disaster Recovery. FHRP и Keepalived**](https://github.com/elekpow/netology/blob/main/keepalived/sflt-1/README.md).
 
-- [**Типы виртуализаций KVM, QEMU**](https://github.com/elekpow/netology/blob/main/keepalived/lessons/lesson2.md).
+- [**Кластеризация и балансировка нагрузки**](https://github.com/elekpow/netology/blob/main/keepalived/sflt-2/README.md).
 
-- [**Docker**](https://github.com/elekpow/netology/blob/main/keepalived/lessons/lesson3.md).
+- [**Docker**](https://github.com/elekpow/netology/blob/main/keepalived/sflt-3/README.md).
 
-- [**Docker. Часть 2**](https://github.com/elekpow/netology/blob/main/keepalived/lessons/lesson4.md).
+- [**Docker. Часть 2**](https://github.com/elekpow/netology/blob/main/keepalived/sflt-4/README.md).
 
-- [**Kubernetes**](https://github.com/elekpow/netology/blob/main/keepalived/lessons/lesson5.md).
-
-- [**Kubernetes. Часть 2**](https://github.com/elekpow/netology/blob/main/keepalived/lessons/lesson6.md).
-
+- [**Kubernetes**](https://github.com/elekpow/netology/blob/main/keepalived/sflt-5/README.md)
 
 
 
@@ -28,4 +25,4 @@
 
 **Свидетельство о прохождении курса:**
 
-<img src="https://github.com/elekpow/netology/blob/main/virtual/images/cert.jpg" alt="cert.jpg" border="0" width="500">
+<img src="https://github.com/elekpow/netology/blob/main/keepalived/images/cert.jpg" alt="cert.jpg" border="0" width="500">
