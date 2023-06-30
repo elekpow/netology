@@ -14,9 +14,9 @@
 
 - [**Git**](https://github.com/elekpow/netology/blob/main/automation/8-03-hw/README.md).
 
-- [**Что такое DevOps. CI/CD**](https://github.com/elekpow/netology/blob/main/automation/GitLab_8-03/README.md).
+- [**Что такое DevOps. CI/CD**](https://github.com/elekpow/netology/blob/main/automation/).
 
-- [**GitLab**](https://github.com/elekpow/netology/blob/main/automation/lessons/lesson7.md).
+- [**GitLab**](https://github.com/elekpow/netology/blob/main/automation/GitLab_8-03/README.md).
 
 
 
