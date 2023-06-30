@@ -12,7 +12,7 @@
 
 - [**Подъем инфраструктуры в облаке**](https://github.com/elekpow/netology/blob/main/automation/lessons/lesson4.md).
 
-- [**Git**](https://github.com/elekpow/netology/blob/main/automation/08-03-hw/README.md).
+- [**Git**](https://github.com/elekpow/netology/blob/main/automation/8-03-hw/README.md).
 
 - [**Что такое DevOps. CI/CD**](https://github.com/elekpow/netology/blob/main/automation/lessons/lesson6.md).
 
