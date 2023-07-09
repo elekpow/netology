@@ -46,6 +46,88 @@
 **Выполнение задания 3.**
 
 
+после установки memcached 
+
+```
+sudo apt update && apt install memcached
+```
+
+Определяем порт на котором запущен **memcached**
+
+![memcached.JPG](https://github.com/elekpow/netology/blob/main/database/images/ports.JPG)
+
+```
+memcached 1670 memcache   26u  IPv4  20308      0t0  TCP 127.0.0.1:11211 (LISTEN)
+```
+
+**порт: 11211**
+
+
+Для проверки Memcached можно передать команды через telnet 
+
+
+**подключение**
+
+```
+ telnet localhost 11211
+```
+
+**ввод данных:**
+
+```
+set key flags exptime bytes <value>
+
+```
+**key**:  ключ к сохраненным данным.
+
+**flags**: 32-разрядное целое число без знака, которое сервер сохраняет вместе с данными (предоставленными пользователем) и возвращает вместе с данными при извлечении элемента.
+
+**exptime**: время истечения в секундах, 0 означает отсутствие задержки, если *exptime* превышает 30 дней, Memcached будет использовать его в качестве временных меток UNIX для истечения срока действия.
+
+**bytes**:  количество байт в блоке данных
+
+
+**<value>** данные
+
+
+----
+**получить данные:**
+
+```
+get KEY
+```
+
+**очистить данные кэша:**
+
+```
+flush_all
+
+```
+
+---
+
+ установим время 5 секунд
+
+
+![memcached_key.JPG](https://github.com/elekpow/netology/blob/main/database/images/memcached_key.JPG)
+
+---
+
+очитска данных кэша
+
+![flush.JPG](https://github.com/elekpow/netology/blob/main/database/images/flush.JPG)
+
+---
+
+установим время 120 секунд
+
+![image1.JPG](https://github.com/elekpow/netology/blob/main/database/images/image1.JPG)
+
+по истечении 120 секунд 
+
+![image2.JPG](https://github.com/elekpow/netology/blob/main/database/images/image2.JPG)
+
+
 
 
 
@@ -62,6 +144,37 @@
 
 **Выполнение задания 4.**
 
+Установим Redis
+
+```
+sudo apt install -y redis
+sudo systemctl status redis
+```
+
+
+ перебор ключей в Redis `redis-cli SCAN 0`  
+ - "0" - начальный курсор для перебора
+ 
+ записать данные в Redis с помощью CLI `redis-cli SET key value`
+
+- установить время жизни (TTL) для ключа -  параметр `EX`,  `SET key value EX <time>`
+
+- Удалить ключи из базы данных `redis-cli flushall`
+
+---
+
+Ввод строки с ключём `redis-cli set test:1:string "value"`
+
+Получить значение по ключу `redis-cli get test:1:string` 
+
+---
+
+![redis.JPG](https://github.com/elekpow/netology/blob/main/database/images/redis.JPG)
+
+
+![redis-cli.JPG](https://github.com/elekpow/netology/blob/main/database/images/redis-cli.JPG)
+
+
 
 ---
 
@@ -75,5 +188,18 @@
 
 **Выполнение задания 5.**
 
+ 
+По умолчанию Redis интерпретирует значение как целое число (тип "int").
 
+`redis-cli set key5 5`
+
+Команда установит значение 5 для ключа "key5". 
+
+
+`redis-cli incrby key5 5`
+
+Увеличим значение на 5
+
+
+![image_redis-cli.JPG](https://github.com/elekpow/netology/blob/main/database/images/image_redis-cli.JPG)
 
