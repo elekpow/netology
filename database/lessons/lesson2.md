@@ -113,13 +113,13 @@ flush_all
 
 ---
 
-очитска данных кэша
+очистка данных кэша
 
 ![flush.JPG](https://github.com/elekpow/netology/blob/main/database/images/flush.JPG)
 
 ---
 
-установим время 120 секунд
+протестируем redis и установим время 120 секунд
 
 ![image1.JPG](https://github.com/elekpow/netology/blob/main/database/images/image1.JPG)
 
