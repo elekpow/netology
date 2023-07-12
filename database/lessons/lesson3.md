@@ -25,6 +25,11 @@
 
 **Выполнение задания 1.**
 
+Elasticsearch установка выполнена через docker-compose
+
+![image-Elasticsearch.JPG](https://github.com/elekpow/netology/blob/main/database/images/image-Elasticsearch.JPG)
+
+
 ---
 
 ### Задание 2. Kibana
@@ -32,6 +37,9 @@
 Установите и запустите Kibana.
 
 *Приведите скриншот интерфейса Kibana на странице http://<ip вашего сервера>:5601/app/dev_tools#/console, где будет выполнен запрос GET /_cluster/health?pretty*.
+
+![Kibana.JPG](https://github.com/elekpow/netology/blob/main/database/images/Kibana.JPG)
+
 
 ---
 
