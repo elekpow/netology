@@ -130,6 +130,10 @@ volumes:
 
 ---
 
+в процессе выполнения возникли сложности при сборке в Docker, данные не приходят в Logstash
+
+- [варианты сборок в docker] (https://github.com/elekpow/netology/tree/main/database/files);
+
 
 ---
 
