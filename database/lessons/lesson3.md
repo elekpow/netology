@@ -19,13 +19,83 @@
 
 Установите и запустите Elasticsearch, после чего поменяйте параметр cluster_name на случайный. 
 
-*Приведите скриншот команды 'curl -X GET 'localhost:9200/_cluster/health?pretty', сделанной на сервере с установленным Elasticsearch. Где будет виден нестандартный cluster_name*.
+*Приведите скриншот команды 'curl -X GET 'localhost:9200/_cluster/health?pretty'', сделанной на сервере с установленным Elasticsearch. Где будет виден нестандартный cluster_name*.
 
 ---
 
 **Выполнение задания 1.**
 
-Elasticsearch установка выполнена через docker-compose
+Для выполнеия создаю конфигурацю в docker-compose
+
+```
+version: '3.7'
+
+services:
+  # Elasticsearch Docker Images: https://www.docker.elastic.co/
+  elasticsearch:
+    image: elasticsearch:7.17.9
+    container_name: elasticsearch
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  logstash:
+     container_name: logstash
+     image: logstash:7.17.9
+     ports:
+      - "9600:9600"
+    volumes:
+      - ./logstash.conf:/logstach.conf:ro
+    command: logstash -f /logstash.conf
+
+  kibana:
+    container_name: kibana
+    image: kibana:7.17.9
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - 5601:5601
+    depends_on:
+      - elasticsearch
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.17.9
+    command: --strict.perms=false
+    user: root
+    volumes:
+      - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+  
+ nginx: nginx:1.25
+   ports:
+     - 80:80
+   volumes:
+     - ./nginxlog:/var/log/nginx
+   restart: always
+
+
+volumes:
+  elasticsearch-data:
+    driver: local
+
+```
+
+скриншот Elasticsearch
 
 ![image-Elasticsearch.JPG](https://github.com/elekpow/netology/blob/main/database/images/image-Elasticsearch.JPG)
 
@@ -40,6 +110,9 @@ Elasticsearch установка выполнена через docker-compose
 ---
 
 **Выполнение задания 2.**
+
+ Выполнение /app/dev_tools#/console
+
 
 ![Kibana.JPG](https://github.com/elekpow/netology/blob/main/database/images/Kibana.JPG)
 
@@ -57,6 +130,9 @@ Elasticsearch установка выполнена через docker-compose
 
 ---
 
+
+---
+
 ### Задание 4. Filebeat. 
 
 Установите и запустите Filebeat. Переключите поставку логов Nginx с Logstash на Filebeat. 
@@ -69,6 +145,10 @@ Elasticsearch установка выполнена через docker-compose
 
 ---
 
+
+
+---
+
 ### Задание 5*. Доставка данных 
 
 Настройте поставку лога в Elasticsearch через Logstash и Filebeat любого другого сервиса , но не Nginx. 
@@ -78,6 +158,6 @@ Elasticsearch установка выполнена через docker-compose
 
 ---
 
-**Выполнение задания 5.**
+**Выполнение задания 5*.**
 
 ---
