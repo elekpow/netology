@@ -143,9 +143,6 @@ volumes:
 
 добавим nginx в docker-compose.yml
 
-
-
-
 ```
  nginx:
     image: nginx:alpine
@@ -310,7 +307,83 @@ Cкриншот интерфейса Kibana
 
 **Выполнение задания 4.**
 
----
+
+1) Теперь пернастроим и пи перенаправим данные в Filebeat
+
+Конфигурация Filebeat , 
+
+файл [filbeat_nginx.yml](https://github.com/elekpow/netology/blob/main/database/files/filbeat_nginx.yml)
+
+```
+filebeat.inputs:
+- type: log
+  paths:
+    - '/usr/share/filebeat/nginx/access.log'
+
+output.elasticsearch:
+  hosts: ["elasticsearch:9200"]
+  indices:
+    - index: "filebeat_nginx-%{[agent.version]}-%{+yyyy.MM.dd}"
+
+logging.json: true
+logging.metrics.enabled: false
+
+```
+
+файл [logstash_filebeat.conf ](https://github.com/elekpow/netology/blob/main/database/files/logstash_filebeat.conf )
+
+
+```
+input {
+    beats {
+          port => 5044
+        }
+}
+
+filter {
+    grok {
+        match => { "message" => "%{IPORHOST:remote_ip} - %{DATA:user_name}
+\[%{HTTPDATE:access_time}\] \"%{WORD:http_method} %{DATA:url}
+HTTP/%{NUMBER:http_version}\" %{NUMBER:response_code} %{NUMBER:body_sent_bytes}
+\"%{DATA:referrer}\" \"%{DATA:agent}\"" }
+    }
+    mutate {
+        remove_field => [ "host" ]
+    }
+}
+
+output {
+    elasticsearch {
+        hosts => ["http://elasticsearch:9200"]
+        index => "logstash-nginx-index"
+   }
+}
+
+```
+
+в docker-compose.yaml добавляем volumes 
+
+```
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.17.9
+    container_name: filebeat-7.17.9
+    command: --strict.perms=false
+    user: root
+    volumes:
+      - ./filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./log:/usr/share/filebeat/nginx
+    networks:
+      - elk-network
+    restart: always
+```
+
+
+
+Cкриншот интерфейса Kibana
+
+![filebeat_nginx.JPG](https://github.com/elekpow/netology/blob/main/database/images/filebeat_nginx.JPG)
 
 
 
