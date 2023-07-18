@@ -402,5 +402,33 @@ Cкриншот интерфейса Kibana
 
 **Выполнение задания 5*.**
 
+для теста попробуем взять данные из samba 
 
+задаем шаблон для Grok filter plugin в интерфейсе Kibana, в Grok Debuger
+
+```
+%{MONTH:syslog_month} %{MONTHDAY:syslog_day} %{TIME:syslog_time} %{HOSTNAME:srv_name} smbd_audit: nobody:%{IP:user_ip}:%{WORD:share_name}:%{WORD:action}:%{DATA:sucess}:%{GREEDYDATA:path}
+```
+
+
+для  logstach  filter 
+
+```
+filter {
+   mutate {
+    gsub => ["message","[\\|]",":"]
+    gsub => ["message","  "," "]
+    }
+   grok {
+    match => [ "message" ,"%{MONTH:syslog_month} %{MONTHDAY:syslog_day} %{TIME:syslog_time} %{HOSTNAME:srv_name} smbd_audit: nobody:%{IP:user_ip}:%{WORD:share_name}:%{WORD:action}:%{DATA:sucess}:%{GREEDYDATA:path}"]
+    }
+}
+
+```
+
+![test-grok.JPG](https://github.com/elekpow/netology/blob/main/database/images/test-grok.JPG)
+
+для теста можно вывести в  **stdout {}**
+
+![console-logstash.JPG](https://github.com/elekpow/netology/blob/main/database/images/console-logstash.JPG)
 
