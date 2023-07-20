@@ -297,7 +297,7 @@ channel.start_consuming()
 ```
 
 
-![rabbitmqadmin-web2.JPG](https://github.com/elekpow/netology/blob/main/database/images/rabbitmq/rabbitmqadmin-web2.JPG)
+![rabbitmq-web2.JPG](https://github.com/elekpow/netology/blob/main/database/images/rabbitmq/rabbitmq-web2.JPG)
 
 
 
