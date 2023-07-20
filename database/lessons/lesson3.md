@@ -513,7 +513,7 @@ filter {
 output {
     elasticsearch {
         hosts => ["http://elasticsearch:9200"]
-        index => "samba-nginx"
+        index => "samba-log"
     }
 }
 
