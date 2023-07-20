@@ -521,3 +521,78 @@ output {
 
 ![samba-log.JPG](https://github.com/elekpow/netology/blob/main/database/images/samba-log.JPG)
 
+
+
+**filebeat** 
+
+теперь добавим **smb.pipeline** , в котором данные будут идти через filebeat
+
+
+```
+├── logstash
+│   ├── config
+│   │   ├── logstash.yml
+│   │   └── pipelines.yml
+│   ├── data
+│   └── pipeline
+│       ├── main.pipeline
+│       ├── nginx.pipeline
+│       ├── samba.pipeline
+│       └── smb.pipeline
+```
+
+конфигурация filebeat теперь выглядит так:
+
+filebeat/config/filebeat.yml  
+
+```
+                                                                                                         
+filebeat.inputs:
+- input_type: log
+  enabled: true
+  paths:
+    - '/usr/share/filebeat/samba/audit.log'
+
+output.logstash:
+  hosts: ["logstash:5044"]
+
+```
+
+logstash/pipeline/smb.pipeline
+
+
+```
+                                                           
+input {
+    beats {
+          port => 5044
+        }
+}
+
+filter {
+   mutate {
+    gsub => ["message","[\|]",":"]
+    gsub => ["message","  "," "]
+    }
+   grok {
+     match => [ "message" , "%{MONTH:syslog_month} %{MONTHDAY:syslog_day} %{TIME:syslog_time} %{HOSTNAME:srv_name} smbd_audit: nobody:%{IP:user_ip}:%{WORD:s$ overwrite => [ "message" ]
+    }
+}
+
+filter {
+}
+
+output {
+    elasticsearch {
+        hosts => ["http://elasticsearch:9200"]
+        index => "samba-beats"
+    }
+}
+
+```
+
+![filebeat_samba.JPG](https://github.com/elekpow/netology/blob/main/database/images/filebeat_samba.JPG)
+
+
+![dashboars.JPG](https://github.com/elekpow/netology/blob/main/database/images/dashboars.JPG)
+
