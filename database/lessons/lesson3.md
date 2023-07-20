@@ -439,6 +439,7 @@ filter {
 
 igor@deb1:~/test$ tree
 .
+```
 ├── docker-compose.yaml
 ├── elasticsearch
 │   └── config
@@ -470,7 +471,7 @@ igor@deb1:~/test$ tree
 │   └── public
 │       └── index.html
 └── test-docker.sh
-
+```
 
 logstash -> config -> pipelines.yml
 
