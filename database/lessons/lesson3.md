@@ -432,3 +432,91 @@ filter {
 
 ![console-logstash.JPG](https://github.com/elekpow/netology/blob/main/database/images/console-logstash.JPG)
 
+------
+
+Изучив документацию, и проведя множество эксперентов по сбору логов в Elasticsearch получилась конфигурация:
+
+
+igor@deb1:~/test$ tree
+.
+├── docker-compose.yaml
+├── elasticsearch
+│   └── config
+│       └── elasticsearch.yml
+├── filebeat
+│   └── config
+│       ├── filebeat.yml
+│       └── filebeat.yml.back
+├── kibana
+│   └── config
+│       └── kibana.yml
+├── log
+│   ├── access.log
+│   └── error.log
+├── logstash
+│   ├── config
+│   │   ├── logstash.yml
+│   │   └── pipelines.yml
+│   ├── data
+│   └── pipeline
+│       ├── main.pipeline
+│       ├── nginx.pipeline
+│       └── samba.pipeline
+├── nginx
+│   ├── config
+│   ├── data
+│   ├── etc
+│   │   └── nginx.conf
+│   └── public
+│       └── index.html
+└── test-docker.sh
+
+
+logstash -> config -> pipelines.yml
+
+в этом pipelines.yml задаем различные конфигурации. Получаем логи из nginx, а также из samba сервера
+
+```
+- pipeline.id: nginx_pipeline
+  path.config: "/usr/share/logstash/pipeline/nginx.pipeline"
+  queue.type: persisted
+
+- pipeline.id: samba_pipeline
+  path.config: "/usr/share/logstash/pipeline/samba.pipeline"
+  queue.type: persisted
+```
+
+**index => "samba-nginx"** задаем индекс для логов samba
+
+logstash -> pipeline -> samba.pipeline
+
+```
+
+input {
+   file {
+        path => "/usr/share/logstash/samba/audit.log"
+        start_position => "beginning"
+        }
+}
+
+filter {
+   mutate {
+    gsub => ["message","[\|]",":"]
+    gsub => ["message","  "," "]
+    }
+   grok {
+     match => [ "message" , "%{MONTH:syslog_month} %{MONTHDAY:syslog_day} %{TIME:syslog_time} %{HOSTNAME:srv_name} smbd$ overwrite => [ "message" ]
+    }
+}
+
+output {
+    elasticsearch {
+        hosts => ["http://elasticsearch:9200"]
+        index => "samba-nginx"
+    }
+}
+
+```
+
+![samba-log.JPG](https://github.com/elekpow/netology/blob/main/database/images/samba-log.JPG)
+
