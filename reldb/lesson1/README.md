@@ -28,6 +28,135 @@
 **Выполнение задания 1.**
 
 
+- Таблица "Сотрудники" , в ней хранятся ФИО Сотрудников, текстовые данные, в sql тип данных `varchar`
+- Таблица "Подразделения",  в ней хранятся наименования структурных подразделений,текстовые данные,в sql тип данных `varchar`
+- Таблица "Тип подразделения", в этой таблице подраздаеления объединены в своеобразные группы по опредеоенному типу деятельности,текстовые данные,в sql тип данных `varchar`
+- Таблица "Должность", в этой таблице каждому сотруднику присвоена должность,текстовые данные,в sql тип данных `varchar`
+- Таблица "Оклад", в этой таблице указан оклад сотрудника,текстовые данные,в sql тип данных `decimal`, наиболее походящий для хранения денежных значений
+- Таблица "Дата найма",числовые данные,в sql тип данных `int`
+- Таблица "Адрес филиала", Таблица содержит адреса филиалов,текстовые данные,в sql тип данных `varchar`
+- Таблица "Проекты", Название проектов (Проект на который назначен), на которые назначен сотрудник,текстовые данные,в sql  тип данных `varchar`
+
+---
+ Приведем таблицу в Excel в вид таблиц базы данных 
+ 
+- Таблица "Сотрудники" 
+- Таблица "Подразделения"
+- Таблица "Тип подразделения"
+- Таблица "Должность"
+- Таблица "Оклад"
+- Таблица "Дата найма"
+- Таблица "Адрес филиала",
+  и разделим:
+- Таблицы "Регион"; "Город"; "Улица"; "Дом"
+
+ 
+```
+"Сотрудники"(
+- id SERIAL PRIMARY KEY,
+- name varchar(50) NOT NULL,
+- strid integer,		/* "Подразделения" */
+- postid integer,		/* "Должность" */
+- balanceid integer,	/* "Оклад" */
+- dtnaimid integer,		/* "Дата найма" */
+- addresid integer,		/* "Адрес филиала" */
+- projectis integer,	/* "Проекты" */
+- PRIMARY KEY (ID)
+)
+```
+```
+"Подразделения"(
+- id SERIAL PRIMARY KEY,
+- strid integer,
+- typeid integer, 		/*"Тип подразделения" */
+- title varchar(50) NOT NULL,
+
+)
+```
+```
+"Тип подразделения"(
+- id SERIAL PRIMARY KEY,
+- typeid integer,
+- title varchar(50) NOT NULL,
+- PRIMARY KEY (ID)
+)
+```
+```
+"Должность"(
+- id SERIAL PRIMARY KEY,
+- postid integer,
+- post varchar(100) NOT NULL,
+- PRIMARY KEY (ID)
+)
+```
+```
+"Оклад"(
+- id SERIAL PRIMARY KEY,
+- balanceid integer,
+- balance DECIMAL(10,2),
+- PRIMARY KEY (ID)
+)
+```
+```
+"Дата найма"(
+- id SERIAL PRIMARY KEY,
+- dtnaimid integer,
+- dtnaim integer,
+- PRIMARY KEY (ID)
+)
+```
+```
+"Адрес"(
+- id SERIAL PRIMARY KEY,
+- addressid integer,
+- regionsid integer,	/*"Таблица Регион"*/
+- citysid integer,		/*"Таблица город"*/
+- streetid integer,		/*"Таблица Улица"*/
+- homeid integer,		/*"Таблица дом"*/
+- PRIMARY KEY (ID)
+);
+```
+```
+"Таблица Регион"(
+- id SERIAL PRIMARY KEY,
+- regionsid integer,
+- region varchar(50) NOT NULL,
+- PRIMARY KEY (ID)
+);
+```
+```
+"Таблица город"(
+- id SERIAL PRIMARY KEY,
+- citysid integer,
+- city varchar(50) NOT NULL,
+- PRIMARY KEY (ID)
+);
+```
+
+```
+"Таблица Улица"(
+- id SERIAL PRIMARY KEY,
+- streetid integer,
+- street varchar(50) NOT NULL,
+- PRIMARY KEY (ID)
+);
+```
+```
+"Таблица дом"(
+- id SERIAL PRIMARY KEY,
+- homeid integer,
+- home varchar(50) NOT NULL,
+- PRIMARY KEY (ID)
+);
+```
+```
+"Проекты"(
+- id SERIAL PRIMARY KEY,
+- projectis integer,	
+- prname varchar(50) NOT NULL
+)
+```
+
 
 ---
 
@@ -40,3 +169,14 @@
 **Выполнение задания 2*.**
 
 ---
+
+В таблице видны Функциональные зависимости (зависимость значения одного атрибута от другого) в столбцах: "ФИО сотрудника" и "Оклад", тут наблюдается строго соответствие.
+
+
+
+ а также "ФИО сотрудника" и "Проект на который назначен" . Еще в столбцах: "ФИО сотрудника" и "Дата найма"
+
+
+ ![test.png](https://github.com/elekpow/netology/blob/main/reldb/lesson1/images/test.png)
+
+
