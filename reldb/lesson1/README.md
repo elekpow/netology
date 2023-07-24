@@ -57,21 +57,21 @@
 - First_name  varchar(50) NOT NULL,
 - Middle_name   varchar(50) NOT NULL,
 - last_name  varchar(50) NOT NULL,
-- postid integer,		/*"Должность" */
-- podrid integer,		/*"Подразделение" */
-- balanceid integer,		/*"Оклад"*/
-- dtnaimid integer,		/*Дата найма*/
-- projectid integer		/*проекты*/
+- postid integer,		/* "Должность" */
+- podrid integer,		/* "Подразделение" */
+- balanceid integer,		/* "Оклад" */
+- dtnaimid integer,		/* "Дата найма" */
+- projectid integer		/* "проекты" */
 ```
 
 ```
 "Подразделения"(
 - id SERIAL PRIMARY KEY,
 - title varchar(50) NOT NULL
-- typeid integer, 		/*"Тип подразделения" */
-- regionid integer,		/*"Регион" */
-- cityid integer, 		/*"Город" */
-- addrid integer 		/*"Адрес" */
+- typeid integer, 		/* "Тип подразделения" */
+- regionid integer,		/* "Регион" */
+- cityid integer, 		/* "Город" */
+- addrid integer 		/* "Адрес" */
 )
 ```
 ```
