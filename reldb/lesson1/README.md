@@ -38,9 +38,10 @@
 - Таблица "Проекты", Название проектов (Проект на который назначен), на которые назначен сотрудник,текстовые данные,в sql  тип данных `varchar`
 
 ---
-**Приведем таблицу в Excel в вид таблиц базы данных**
+**Приведем таблицу из Excel в вид таблиц базы данных**
  
 - Таблица "Сотрудники" , разделим по столбцам : "Фамилия","Имя","Отчество"
+- определим таблицу "Трудоустройство"
 - Таблица "Подразделения"
 - Таблица "Тип подразделения"
 - Таблица "Должность"
@@ -48,78 +49,96 @@
 - Таблица "Дата найма"
 - Таблица "Адрес филиала",
   и разделим:
-- Таблицы "Регион"; "Город"; "Улица"; "Дом"
+- Таблицы "Регион"; "Город" 
+ "Местоположение", содержащую в себе улицу и дом.
+
 
 
 ```
 "Сотрудники"(
 - id SERIAL PRIMARY KEY,
-- First_name  varchar(50) NOT NULL,
-- Middle_name   varchar(50) NOT NULL,
-- last_name  varchar(50) NOT NULL,
-- postid integer,		/* "Должность" */
-- podrid integer,		/* "Подразделение" */
-- balanceid integer,		/* "Оклад" */
-- dtnaimid integer,		/* "Дата найма" */
-- projectid integer		/* "проекты" */
+- First_name  varchar(100) NOT NULL,
+- Middle_name   varchar(100) NOT NULL,
+- last_name  varchar(100) NOT NULL, 
+)
 ```
 
 ```
-"Подразделения"(
+"Трудоустройство"(
 - id SERIAL PRIMARY KEY,
-- title varchar(50) NOT NULL
-- typeid integer, 		/* "Тип подразделения" */
-- regionid integer,		/* "Регион" */
-- cityid integer, 		/* "Город" */
-- addrid integer 		/* "Адрес" */
+- worker_id int,		/*сотрудник*/
+- divisions_id int,		/* подраздаеление*/ 
+- employment int, 		/* дата найма*/
+- project int , 		/* Проекты*/ 
+- payment int , 		/* оклад */ 
+- post int 			/* должность */
 )
 ```
+
 ```
-"Тип подразделения"(
+"Оклад"(
 - id SERIAL PRIMARY KEY,
-- title varchar(50) NOT NULL
+- payment DECIMAL(10,2)
 )
 ```
+
 ```
 "Должность"(
 - id SERIAL PRIMARY KEY,
 - post varchar(100) NOT NULL
 )
 ```
+
 ```
-"Оклад"(
+"Проекты"(
 - id SERIAL PRIMARY KEY,
-- balance DECIMAL(10,2)
+- title varchar(50) NOT NULL
 )
 ```
+
 ```
-"Дата найма"(
+"Подразделения"(
 - id SERIAL PRIMARY KEY,
-- dtnaim integer
+- title varchar(100) NOT NULL,
+- div_type int,			/* "Тип подразделения" */
+- address int			/* "Таблица Адрес" */ 
 )
 ```
+
+```
+"Тип подразделения"(
+- id SERIAL PRIMARY KEY,
+- title varchar(50) NOT NULL
+)
+```
+
 ```
 "Таблица Адрес"(
 - id SERIAL PRIMARY KEY,
-- addressid varchar(250) NOT NULL
-);
+- region_id integer,
+- city_id integer,
+- street_id integer 
+)
 ```
+
 ```
 "Таблица Регион"(
 - id SERIAL PRIMARY KEY,
 - region varchar(50) NOT NULL
-);
+)
 ```
+
 ```
 "Таблица город"(
 - id SERIAL PRIMARY KEY,
-- city varchar(50) NOT NULL
-);
+- city varchar(50) NOT NULL 
+)
 ```
+
 ```
-"Проекты"(
+"Таблица Местоположение "(
 - id SERIAL PRIMARY KEY,
-- prname varchar(50) NOT NULL
+- address varchar(50) NOT NULL
 )
 ```
 
@@ -144,5 +163,5 @@
 
 Преобразуем данные в формат хранения  базы данных, раделив по соответсвующим таблицам. Вариант можно представить ввиде диаграммы:
 
- ![test.png](https://github.com/elekpow/netology/blob/main/reldb/lesson1/images/test.png)
+ ![test1.png](https://github.com/elekpow/netology/blob/main/reldb/lesson1/images/test1.png)
 
