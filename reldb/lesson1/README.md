@@ -40,7 +40,7 @@
 ---
 **Приведем таблицу в Excel в вид таблиц базы данных**
  
-- Таблица "Сотрудники" 
+- Таблица "Сотрудники" , разделим по столбцам : "Фамилия","Имя","Отчество"
 - Таблица "Подразделения"
 - Таблица "Тип подразделения"
 - Таблица "Должность"
@@ -50,109 +50,75 @@
   и разделим:
 - Таблицы "Регион"; "Город"; "Улица"; "Дом"
 
- 
+
 ```
 "Сотрудники"(
 - id SERIAL PRIMARY KEY,
-- name varchar(50) NOT NULL,
-- strid integer,		/* "Подразделения" */
-- postid integer,		/* "Должность" */
-- balanceid integer,		/* "Оклад" */
-- dtnaimid integer,		/* "Дата найма" */
-- addresid integer,		/* "Адрес филиала" */
-- projectis integer,		/* "Проекты" */
-- PRIMARY KEY (ID)
-)
+- First_name  varchar(50) NOT NULL,
+- Middle_name   varchar(50) NOT NULL,
+- last_name  varchar(50) NOT NULL,
+- postid integer,		/*"Должность" */
+- podrid integer,		/*"Подразделение" */
+- balanceid integer,		/*"Оклад"*/
+- dtnaimid integer,		/*Дата найма*/
+- projectid integer		/*проекты*/
 ```
+
 ```
 "Подразделения"(
 - id SERIAL PRIMARY KEY,
-- strid integer,
+- title varchar(50) NOT NULL
 - typeid integer, 		/*"Тип подразделения" */
-- title varchar(50) NOT NULL,
-- PRIMARY KEY (ID)
+- regionid integer,		/*"Регион" */
+- cityid integer, 		/*"Город" */
+- addrid integer 		/*"Адрес" */
 )
 ```
 ```
 "Тип подразделения"(
 - id SERIAL PRIMARY KEY,
-- typeid integer,
-- title varchar(50) NOT NULL,
-- PRIMARY KEY (ID)
+- title varchar(50) NOT NULL
 )
 ```
 ```
 "Должность"(
 - id SERIAL PRIMARY KEY,
-- postid integer,
-- post varchar(100) NOT NULL,
-- PRIMARY KEY (ID)
+- post varchar(100) NOT NULL
 )
 ```
 ```
 "Оклад"(
 - id SERIAL PRIMARY KEY,
-- balanceid integer,
-- balance DECIMAL(10,2),
-- PRIMARY KEY (ID)
+- balance DECIMAL(10,2)
 )
 ```
 ```
 "Дата найма"(
 - id SERIAL PRIMARY KEY,
-- dtnaimid integer,
-- dtnaim integer,
-- PRIMARY KEY (ID)
+- dtnaim integer
 )
 ```
 ```
 "Таблица Адрес"(
 - id SERIAL PRIMARY KEY,
-- addressid integer,
-- regionsid integer,		/*"Таблица Регион"*/
-- citysid integer,		/*"Таблица город"*/
-- streetid integer,		/*"Таблица Улица"*/
-- homeid integer,		/*"Таблица дом"*/
-- PRIMARY KEY (ID)
+- addressid varchar(250) NOT NULL
 );
 ```
 ```
 "Таблица Регион"(
 - id SERIAL PRIMARY KEY,
-- regionsid integer,
-- region varchar(50) NOT NULL,
-- PRIMARY KEY (ID)
+- region varchar(50) NOT NULL
 );
 ```
 ```
 "Таблица город"(
 - id SERIAL PRIMARY KEY,
-- citysid integer,
-- city varchar(50) NOT NULL,
-- PRIMARY KEY (ID)
-);
-```
-
-```
-"Таблица Улица"(
-- id SERIAL PRIMARY KEY,
-- streetid integer,
-- street varchar(50) NOT NULL,
-- PRIMARY KEY (ID)
-);
-```
-```
-"Таблица дом"(
-- id SERIAL PRIMARY KEY,
-- homeid integer,
-- home varchar(50) NOT NULL,
-- PRIMARY KEY (ID)
+- city varchar(50) NOT NULL
 );
 ```
 ```
 "Проекты"(
 - id SERIAL PRIMARY KEY,
-- projectis integer,	
 - prname varchar(50) NOT NULL
 )
 ```
