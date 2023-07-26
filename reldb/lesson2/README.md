@@ -89,6 +89,8 @@ volumes:
  
  ```
  GRANT ALL PRIVILEGES ON * . * TO 'sys_temp'@'localhost';
+ 
+ FLUSH PRIVILEGES;
  ```
  
  **1.5  запрос на получение списка прав для пользователя sys_temp**
@@ -235,3 +237,17 @@ mysql -u sys_temp -p -e "USE sakila; SELECT TABLE_NAME AS 'Название та
 ---
 
 ### Выполнение задания 3*.
+
+Чтобы убрать у пользователя **sys_temp** права на внесение, изменение и удаление данных из базы **sakil** выполним:
+
+```
+USE sakila;
+REVOKE INSERT, ALTER, UPDATE, DELETE ON * FROM 'sys_temp'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+Результат выполнения:
+
+ ![grant-sys_temp_revoke.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson2/images/grant-sys_temp_revoke.JPG)
+
+
