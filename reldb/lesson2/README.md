@@ -83,7 +83,7 @@ volumes:
 `SELECT User,Host FROM mysql.user;`
 
 
- ![users.JPG](https://github.com/elekpow/netology/blob/main/reldb/users.JPG)
+ ![users.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson2/images/users.JPG)
 
 
 Скачиваю архив с базой данных и распаковываю. Подключаюсь к контейнеру. и выполняю подключение к MySQL/ 
