@@ -89,7 +89,18 @@ volumes:
  ```
  GRANT ALL PRIVILEGES ON * . * TO 'sys_temp'@'localhost';
  ```
+ 
+ **1.5**
+ 
  ![grant-sys_temp.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson2/images/grant-sys_temp.JPG)
+
+
+
+**1.6**  Переподключаюсь к базе данных от имени **sys_temp**
+ 
+ ![switch_user.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson2/images/switch_user.JPG)
+
+
 
 
 
