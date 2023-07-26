@@ -35,7 +35,7 @@ ALTER USER 'sys_test'@'localhost' IDENTIFIED WITH mysql_native_password BY 'pass
 
 **Выполнение задания 1.**
 
-
+1.1 
 Устанавливаю MySQL в Docker , с несложным паролем для root пользователя
 
 ```
@@ -72,7 +72,7 @@ volumes:
  ![terminal.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson2/images/terminal.JPG)
 
 
-
+1.2
 Создаю пользователя sys_temp 
 
 `CREATE USER 'sys_temp'@'localhost' IDENTIFIED BY '123456';`
@@ -82,8 +82,14 @@ volumes:
 
 `SELECT User,Host FROM mysql.user;`
 
+1.3
 
  ![users.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson2/images/users.JPG)
+ 
+ 1.4
+ все права для пользователя sys_temp
+ 
+ `GRANT ALL PRIVILEGES ON * . * TO 'sys_temp'@'localhost';`
 
 
 Скачиваю архив с базой данных и распаковываю. Подключаюсь к контейнеру. и выполняю подключение к MySQL/ 
