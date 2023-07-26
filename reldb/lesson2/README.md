@@ -162,7 +162,7 @@ customer         | customer_id
 ```
 mysql -u sys_temp -p -e "USE sakila; SELECT TABLE_NAME AS 'Название таблицы', COLUMN_NAME AS 'Название первичного ключа' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'sakila'  AND COLUMN_KEY = 'PRI'";
 ```
-
+```
 +---------------------------------+--------------------------------------------------+
 | Название таблицы                | Название первичного ключа                        |
 +---------------------------------+--------------------------------------------------+
@@ -185,6 +185,7 @@ mysql -u sys_temp -p -e "USE sakila; SELECT TABLE_NAME AS 'Название та
 | staff                           | staff_id                                         |
 | store                           | store_id                                         |
 +---------------------------------+--------------------------------------------------+
+```
 
 Подключимся к MySQL `mysql -u sys_temp -p` и выполним `SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));`
 
