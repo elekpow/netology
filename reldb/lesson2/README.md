@@ -50,6 +50,7 @@ services:
       - "3306:3306"
     volumes:
       - db:/var/lib/mysql
+	  - ./db:/var/db
 
 volumes:
   db:
@@ -73,7 +74,7 @@ volumes:
 
 **1.2 Создаю пользователя 'sys_temp'**
 
-`CREATE USER 'sys_temp'@'localhost' IDENTIFIED BY '123456';`
+`CREATE USER 'sys_temp'@'localhost' IDENTIFIED BY 'password';`
 
 
 Получение списка пользователей:
@@ -90,7 +91,9 @@ volumes:
  GRANT ALL PRIVILEGES ON * . * TO 'sys_temp'@'localhost';
  ```
  
- **1.5**
+ **1.5  запрос на получение списка прав для пользователя sys_temp**
+ 
+ `show grants for 'sys_temp'@'localhost';`
  
  ![grant-sys_temp.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson2/images/grant-sys_temp.JPG)
 
@@ -98,19 +101,49 @@ volumes:
 
 **1.6**  Переподключаюсь к базе данных от имени **sys_temp**
  
+ 
+ `ALTER USER 'sys_temp'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';`
+
+ 
+ `SYSTEM mysql -u sys_temp -p`
+ 
+ `select user();`
+ 
  ![switch_user.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson2/images/switch_user.JPG)
 
 
+**1.7** А теперь восстановим базу данных из дампа: 
+
+Скачиваю и распаковываю архив с базой данных в каталог `./db` , который проброшен в конейнер 'mysql-my' `/var/db/`
+
+```
+curl -O https://downloads.mysql.com/docs/sakila-db.zip > ./db/sakila-db.zip
+
+unzip ./db/sakila-db.zip -d ./db
+```
+
+Найдем контейнер с MySQL:
+
+`docker ps -a |grep mysql:8.0 | cut -d' ' -f 1`
+
+подключимся к контейнеру:
+
+`docker exec -it f1117f0187f5 /bin/bash`
 
 
+восстановим базу данных из дампа:
 
+```
+mysql -u sys_temp -p -e "create database sakila";`
+mysql -u sys_temp -p ${sakila} < /var/db/sakila-db/sakila-schema.sql
+mysql -u sys_temp -p ${sakila} < /var/db/sakila-db/sakila-data.sql
+```
 
-Скачиваю архив с базой данных и распаковываю. Подключаюсь к контейнеру. и выполняю подключение к MySQL/ 
+Команда для получения всех таблиц базы данных:
 
-`curl https://downloads.mysql.com/docs/sakila-db.zip -O; unzip -Z *.zip
+`mysql -u sys_temp -p -e "use sakila; show tables";`
 
-
-
+ ![show_tables.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson2/images/show_tables.JPG)
 
 
 ### Задание 2
