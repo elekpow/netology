@@ -158,11 +158,71 @@ customer         | customer_id
 ### Выполнение задания 2.
 
 
+команда для получения значений первичных ключей из  **INFORMATION_SCHEMA** будет выглядеть так:
+```
+mysql -u sys_temp -p -e "USE sakila; SELECT TABLE_NAME AS 'Название таблицы', COLUMN_NAME AS 'Название первичного ключа' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'sakila'  AND COLUMN_KEY = 'PRI'";
+```
+
++---------------------------------+--------------------------------------------------+
+| Название таблицы                | Название первичного ключа                        |
++---------------------------------+--------------------------------------------------+
+| actor                           | actor_id                                         |
+| address                         | address_id                                       |
+| category                        | category_id                                      |
+| city                            | city_id                                          |
+| country                         | country_id                                       |
+| customer                        | customer_id                                      |
+| film                            | film_id                                          |
+| film_actor                      | actor_id                                         |
+| film_actor                      | film_id                                          |
+| film_category                   | category_id                                      |
+| film_category                   | film_id                                          |
+| film_text                       | film_id                                          |
+| inventory                       | inventory_id                                     |
+| language                        | language_id                                      |
+| payment                         | payment_id                                       |
+| rental                          | rental_id                                        |
+| staff                           | staff_id                                         |
+| store                           | store_id                                         |
++---------------------------------+--------------------------------------------------+
+
+Подключимся к MySQL `mysql -u sys_temp -p` и выполним `SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));`
+
+теперь мы сможем выполнить группировку:
+
+```
+SELECT TABLE_NAME , GROUP_CONCAT(COLUMN_NAME) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'sakila' AND COLUMN_KEY = 'PRI' GROUP BY TABLE_NAME;
+```
 
 
+А теперь зададим для столбцов заголовки : 'Название таблицы' и 'Название первичного ключа', это можно передать через терминал.
 
-
-
+```
+mysql -u sys_temp -p -e "USE sakila; SELECT TABLE_NAME AS 'Название таблицы' , GROUP_CONCAT(COLUMN_NAME) AS 'Название первичного ключа' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'sakila' AND COLUMN_KEY = 'PRI' GROUP BY TABLE_NAME; ";
+```
+```
++---------------------------------+--------------------------------------------------+
+| Название таблицы 		  | Название первичного ключа			|
++---------------------------------+--------------------------------------------------+
+| actor                           | actor_id                                         |
+| address                         | address_id                                       |
+| category                        | category_id                                      |
+| city                            | city_id                                          |
+| country                         | country_id                                       |
+| customer                        | customer_id                                      |
+| film                            | film_id                                          |
+| film_actor                      | actor_id,film_id                                 |
+| film_category                   | category_id,film_id                              |
+| film_text                       | film_id                                          |
+| inventory                       | inventory_id                                     |
+| language                        | language_id                                      |
+| payment                         | payment_id                                       |
+| rental                          | rental_id                                        |
+| staff                           | staff_id                                         |
+| store                           | store_id                                         |
++---------------------------------+--------------------------------------------------+
+```
+ ![COLUMN_KEY_group.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson2/images/COLUMN_KEY_group.JPG)
 
 ### Задание 3*
 3.1. Уберите у пользователя sys_temp права на внесение, изменение и удаление данных из базы sakila.
