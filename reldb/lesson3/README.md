@@ -71,10 +71,13 @@ SELECT amount, payment_date  FROM sakila.payment WHERE  DATE_FORMAT(payment_date
  
  ![payment_date.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson3/images/payment_date.JPG)
  
+---
 
 ### Задание 3
 
 Получите последние пять аренд фильмов.
+
+---
 
 **Выполнение задания 3.**
 
@@ -94,6 +97,7 @@ SELECT inventory_id,rental_date  FROM sakila.rental WHERE return_date IS NULL OR
  ![rental.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson3/images/rental.JPG)
  
 
+---
 
 ### Задание 4
 
@@ -102,6 +106,8 @@ SELECT inventory_id,rental_date  FROM sakila.rental WHERE return_date IS NULL OR
 Сформируйте вывод в результат таким образом:
 - все буквы в фамилии и имени из верхнего регистра переведите в нижний регистр,
 - замените буквы 'll' в именах на 'pp'.
+
+---
 
 **Выполнение задания 4.**
 
@@ -135,6 +141,7 @@ SELECT LOWER(REPLACE(first_name,'LL','PP')),LOWER(last_name)  FROM sakila.custom
 ![REPLACE_LOWER.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson3/images/REPLACE_LOWER.JPG)
 
 
+---
 
 ### Задание 5*
 
