@@ -19,8 +19,6 @@ SELECT TABLE_NAME, GROUP_CONCAT(COLUMN_NAME) FROM INFORMATION_SCHEMA.COLUMNS WHE
 SELECT COLUMN_NAME  FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'sakila' AND TABLE_NAME = 'address';
 ```
 
-Проверим все какие столбцы имеются в таблице `SELECT * FROM sakila.address LIMIT 3 ;` , нужный нам столбец **district** 
-
 **DISTINCT** - вывести уникальные значения
 
 **LIKE** используется для поиска строк, содержащих определённый шаблон символов. 
