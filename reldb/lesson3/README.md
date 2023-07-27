@@ -14,9 +14,16 @@
  Определим список таблиц в базе данных , а также имена колонок в таблице **'address'**
 
 ```
-SELECT TABLE_NAME, GROUP_CONCAT(COLUMN_NAME) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'sakila' AND COLUMN_KEY = 'PRI' GROUP BY TABLE_NAME;
+SELECT TABLE_NAME, GROUP_CONCAT(COLUMN_NAME) 
+FROM INFORMATION_SCHEMA.COLUMNS 
+WHERE TABLE_SCHEMA = 'sakila' AND COLUMN_KEY = 'PRI' 
+GROUP BY TABLE_NAME;
+```
 
-SELECT COLUMN_NAME  FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'sakila' AND TABLE_NAME = 'address';
+```
+SELECT COLUMN_NAME 
+FROM INFORMATION_SCHEMA.COLUMNS 
+WHERE TABLE_SCHEMA = 'sakila' AND TABLE_NAME = 'address';
 ```
 
 **DISTINCT** - вывести уникальные значения
@@ -29,7 +36,10 @@ SELECT COLUMN_NAME  FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'sakila
 Уникальные названия районов из таблицы с адресами, которые начинаются на “K” и заканчиваются на “a” и не содержат пробелов.
 
 ```
-SELECT DISTINCT (district) FROM sakila.address WHERE district LIKE 'K%a' AND district NOT LIKE '% %'   ORDER BY district ASC;
+SELECT DISTINCT (district) 
+FROM sakila.address 
+WHERE district LIKE 'K%a' AND district NOT LIKE '% %' 
+ORDER BY district ASC;
 ```
 
 ![district_like.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson3/images/district_like.JPG)
@@ -63,7 +73,10 @@ ORDER BY DATE_FORMAT(payment_date,'%Y-%m-%d') ASC ;
 
 
 ``` 
-SELECT amount, payment_date  FROM sakila.payment WHERE  DATE_FORMAT(payment_date,'%Y-%m-%d') BETWEEN '2005-06-15' AND '2005-06-18' AND amount > '10.00'  ORDER BY DATE_FORMAT(payment_date,'%Y-%m-%d') ASC ;
+SELECT amount, payment_date 
+FROM sakila.payment 
+WHERE  DATE_FORMAT(payment_date,'%Y-%m-%d') BETWEEN '2005-06-15' AND '2005-06-18' AND amount > '10.00'  
+ORDER BY DATE_FORMAT(payment_date,'%Y-%m-%d') ASC ;
 ```
   
  
@@ -83,13 +96,18 @@ SELECT amount, payment_date  FROM sakila.payment WHERE  DATE_FORMAT(payment_date
 Определим  имена колонок в таблице **'rental'**
 
 ```
-SELECT COLUMN_NAME  FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'sakila' AND TABLE_NAME = 'rental';
+SELECT COLUMN_NAME  
+FROM INFORMATION_SCHEMA.COLUMNS 
+WHERE TABLE_SCHEMA = 'sakila' AND TABLE_NAME = 'rental';
 ```
 
 Из таблицы **rental** получим последние пять аренд фильмов, прменим `limit 5`
 
 ```
-SELECT inventory_id,rental_date  FROM sakila.rental WHERE return_date IS NULL ORDER BY DATE_FORMAT(rental_date,'%Y-%m-%d') DESC limit 5 ;
+SELECT inventory_id,rental_date 
+FROM sakila.rental 
+WHERE return_date IS NULL 
+ORDER BY DATE_FORMAT(rental_date,'%Y-%m-%d') DESC limit 5 ;
 
 ```
  ![rental.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson3/images/rental.JPG)
@@ -112,13 +130,17 @@ SELECT inventory_id,rental_date  FROM sakila.rental WHERE return_date IS NULL OR
 Определим  имена колонок в таблице **'customer'**
 
 ```
-SELECT COLUMN_NAME  FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'sakila' AND TABLE_NAME = 'customer';
+SELECT COLUMN_NAME 
+FROM INFORMATION_SCHEMA.COLUMNS 
+WHERE TABLE_SCHEMA = 'sakila' AND TABLE_NAME = 'customer';
 ```
 
 Получим список активных покупателей, имена которых Kelly или Willie. 
 
 ```
-SELECT first_name,last_name  FROM sakila.customer WHERE active = 1 AND first_name IN ('Kelly','Willie') ORDER BY first_name ASC;
+SELECT first_name,last_name 
+FROM sakila.customer 
+WHERE active = 1 AND first_name IN ('Kelly','Willie') ORDER BY first_name ASC;
 ```
 
 Переводим все буквы в фамилии и имени из верхнего регистра  в нижний регистр.
@@ -126,14 +148,19 @@ SELECT first_name,last_name  FROM sakila.customer WHERE active = 1 AND first_nam
 **LOWER** - преобразует все символы указанной строки в строчные
 
 ```
-SELECT LOWER(first_name),LOWER(last_name)  FROM sakila.customer WHERE active = 1 AND first_name IN ('Kelly','Willie') ORDER BY first_name ASC;
+SELECT LOWER(first_name),LOWER(last_name) 
+FROM sakila.customer 
+WHERE active = 1 AND first_name IN ('Kelly','Willie') 
+ORDER BY first_name ASC;
 ```
 
 Заменим буквы 'll' в именах на 'pp', применим **REPLACE** для замены символов в строк
 
 ```
-SELECT LOWER(REPLACE(first_name,'LL','PP')),LOWER(last_name)  FROM sakila.customer WHERE active = 1 AND first_name IN ('Kelly','Willie'
-) ORDER
+SELECT LOWER(REPLACE(first_name,'LL','PP')),LOWER(last_name) 
+FROM sakila.customer 
+WHERE active = 1 AND first_name IN ('Kelly','Willie') 
+ORDER BY first_name ASC;
 ```
 
 ![REPLACE_LOWER.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson3/images/REPLACE_LOWER.JPG)
@@ -158,7 +185,9 @@ SELECT count(*) FROM sakila.customer;
 Применяем SUBSTRING_INDEX - он вырезает из строки подстроку с заданым  разделителем (delimiter).
 
 ```
-SELECT SUBSTRING_INDEX(email,'@',1) AS Name ,SUBSTRING_INDEX(email,'@',-1) AS Domaine FROM sakila.customer  ORDER BY first_name ASC LIMIT 15;
+SELECT SUBSTRING_INDEX(email,'@',1) AS Name ,SUBSTRING_INDEX(email,'@',-1) AS Domaine 
+FROM sakila.customer 
+ORDER BY first_name ASC LIMIT 15;
 ```
 
 
