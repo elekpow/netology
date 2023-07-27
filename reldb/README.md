@@ -16,11 +16,11 @@
 
 - [**Репликация и масштабирование. Часть 1**](https://github.com/elekpow/netology/blob/main/reldb/lesson6/README.md).
 
-- [**Репликация и масштабирование. Часть 2*](https://github.com/elekpow/netology/blob/main/reldb/lesson7/README.md).
+- [**Репликация и масштабирование. Часть 2**](https://github.com/elekpow/netology/blob/main/reldb/lesson7/README.md).
 
-- [**Резервное копирование.*](https://github.com/elekpow/netology/blob/main/reldb/lesson8/README.md).
+- [**Резервное копирование.**](https://github.com/elekpow/netology/blob/main/reldb/lesson8/README.md).
 
-- [**Базы данных в облаке*](https://github.com/elekpow/netology/blob/main/reldb/lesson9/README.md).
+- [**Базы данных в облаке**](https://github.com/elekpow/netology/blob/main/reldb/lesson9/README.md).
 
 ---
 
