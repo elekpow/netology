@@ -23,7 +23,7 @@ WHERE TABLE_SCHEMA = 'sakila' AND COLUMN_KEY = 'PRI'
 GROUP BY TABLE_NAME;
 ```
 
- ![command.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/pcommand.JPG)
+ ![command.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/command.JPG)
  
 
 Подключимся  к имеющейся базе данных, которая запущена в docker контейнере через Инструмент администрирования SQL 
