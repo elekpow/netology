@@ -26,8 +26,7 @@ GROUP BY TABLE_NAME;
  ![command.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/command.JPG)
  
 
-Для удобства подключимся  к имеющейся базе данных, которая запущена в docker контейнере через **Инструмент администрирования SQL** 
- 
+
 Определим нужные таблицы:
 фамилия и имя сотрудника - находятся в таблице  `staff` 
 город нахождения магазина - в таблице `city`
@@ -51,6 +50,11 @@ GROUP BY customer.store_id
 HAVING COUNT(customer.customer_id) > 300
 ```
 
+ ![command_sql.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/command_sql.JPG)
+ 
+ 
+Для удобства подключимся  к имеющейся базе данных, которая запущена в docker контейнере через **Инструмент администрирования SQL** 
+ 
  ![sql.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/sql.JPG)
 
 ---
