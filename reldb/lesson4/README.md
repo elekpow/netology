@@ -67,7 +67,23 @@ HAVING COUNT(customer.customer_id) > 300
 
 **Выполнение задания 2.**
 
+SELECT 
+film.title,
+film.length, 
+-- ROUND(AVG(film.length)) AS 'AVG'
+	case ROUND(AVG(film.length))
+		when film.length then 'no ok'
+		ELSE 'ok'
+	END AS 'my_avg'	
+ 
+FROM sakila.film 
 
+ GROUP BY film.length
+
+-- HAVING ROUND(AVG(film.length)) < film.length 
+
+
+ORDER BY film.length DESC;
 ---
 
 ### Задание 3
