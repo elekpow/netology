@@ -198,13 +198,11 @@ WHERE rental.rental_date IS NULL
 GROUP BY movies
 ORDER BY film.title ASC
 ```
-
- ![films.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/films.JPG)
+ ![films_not_rent.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/films_not_rent.JPG)
 
 
 Определим количество фильмов:
  
- ![films_not_rent.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/films_not_rent.JPG)
-
+ ![films.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/films.JPG)
 
  
