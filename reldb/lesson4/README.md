@@ -189,7 +189,7 @@ GROUP BY Name;
 
 Запрос будет выглядеть так:
 
-```
+```sql
 SELECT film.title AS 'movies', COUNT(*) AS 'Total'
 FROM film
 LEFT JOIN inventory ON film.film_id=inventory.film_id
