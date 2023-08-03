@@ -171,6 +171,8 @@ GROUP BY Name;
 ```
 
 
+ ![cash_bonus.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/cash_bonus.JPG)
+
 ---
 
 ### Задание 5*
