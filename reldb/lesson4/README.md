@@ -16,7 +16,7 @@
 **Выполнение задания 1.**
 
 проверим все имеющиеся таблицы
-```
+```sql
 SELECT TABLE_NAME, GROUP_CONCAT(COLUMN_NAME) 
 FROM INFORMATION_SCHEMA.COLUMNS 
 WHERE TABLE_SCHEMA = 'sakila' AND COLUMN_KEY = 'PRI' 
@@ -35,7 +35,7 @@ GROUP BY TABLE_NAME;
 
 **запрос примет вид:**
 
-```
+```sql
 SELECT CONCAT (staff.last_name,' ',staff.first_name) AS 'shop worker',
 city.city AS 'shop city', 
 COUNT(customer.customer_id) AS 'number of users'
@@ -71,7 +71,7 @@ HAVING COUNT(customer.customer_id) > 300
 
 Запрос будет выглядеть следующим образом:
 
-```
+```sql
 SELECT
 COUNT(1) AS 'count', (SELECT avg(film.length ) FROM sakila.film ) AS 'average'
 FROM sakila.film 
@@ -104,7 +104,7 @@ WHERE
 
 Запрос будет выглядеть следующим образом:
 
-```
+```sql
 SELECT COUNT(*) AS count_renatals, 
 MONTHNAME(payment.payment_date) AS months,
 YEAR(payment.payment_date) AS years 
@@ -121,7 +121,7 @@ LIMIT 1;
 
 Запрос будет выглядеть так:
 
-```
+```sql
 SELECT
 MONTHNAME(payment.payment_date) AS MONTH, 
 YEAR(payment.payment_date) AS YEARS, 
@@ -154,7 +154,7 @@ LIMIT 1;
 
 Запрос будет выглядеть так:
 
-```
+```sql
 SELECT
 concat(staff.first_name,' ',staff.last_name) AS Name,
 count(payment.amount) AS sales, 
