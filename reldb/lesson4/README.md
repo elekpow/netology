@@ -26,7 +26,6 @@ GROUP BY TABLE_NAME;
  ![command.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/command.JPG)
  
 
-
 Определим нужные таблицы:
 фамилия и имя сотрудника - находятся в таблице  `staff` 
 город нахождения магазина - в таблице `city`
@@ -68,6 +67,10 @@ HAVING COUNT(customer.customer_id) > 300
 **Выполнение задания 2.**
 
 
+Среднюю продолжительность фильмов определим через функцию `AVG` , используя подзапрос `SELECT avg(film.length ) FROM sakila.film` ,  также через функцию CASE сравним продолжительность каждого фильма к найденому среднему значению. 
+
+Запрос будет выглядеть следующим образом:
+
 ```
 SELECT
 COUNT(1) AS 'count', (SELECT avg(film.length ) FROM sakila.film ) AS 'average'
@@ -79,9 +82,9 @@ WHERE
 		ELSE TRUE
 	END
 
-
 ```
 
+ ![AVG.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/AVG.JPG)
 
 
 ---
@@ -94,23 +97,47 @@ WHERE
 ---
 
 **Выполнение задания 3.**
-SELECT 
-payment.amount,
--- (select max(payment.amount)FROM payment),
 
- max(payment.amount),
-payment.payment_date, 
+Для получения информации о месяце с наибольшей суммой платежей нужно сгруппировать платежи по месяцам,и вычислить суммы платежей в каждом месяце. 
 
-MONTHNAME(payment.payment_date) AS 'Month'
- 
+Ограничим результаты одной записью `LIMIT 1`, чтобы выбрать только месяц с наибольшей суммой.
+
+Запрос будет выглядеть следующим образом:
+
+```
+SELECT COUNT(*) AS count_renatals, 
+MONTHNAME(payment.payment_date) AS months,
+YEAR(payment.payment_date) AS years 
 FROM payment
+INNER JOIN rental ON payment.rental_id=rental.rental_id
+GROUP BY months
+ORDER BY count_renatals DESC
+LIMIT 1;
+```
 
- GROUP BY Month
+ ![count_renatals.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/count_renatals.JPG)
 
- ORDER BY Month ASC
+Информация о количестве аренд за этот месяц, получена из таблицы `rental` .
+
+Запрос будет выглядеть так:
+
+```
+SELECT
+MONTHNAME(payment.payment_date) AS MONTH, 
+YEAR(payment.payment_date) AS YEARS, 
+sum(payment.amount) AS total_payments,
+COUNT(rental.rental_id)
+FROM payment
+INNER JOIN rental ON payment.rental_id=rental.rental_id
+GROUP BY MONTH
+ORDER BY total_payments DESC
+LIMIT 1;
+```
+ 
+ ![total_payments.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/total_payments.JPG)
 
 
-
+ 
  
 ---
 
@@ -121,6 +148,27 @@ FROM payment
 ---
 
 **Выполнение задания 4.**
+
+вычислим количество продаж для каждого продавца , для удобства объединим имя и фамилию. Объединим таблицы **store**  **customer** **payment** 
+Определим условие получение премии, оно должно превышать 8000 , для этого задаем условие `count(payment.amount) > 8000`
+
+Запрос будет выглядеть так:
+
+```
+SELECT
+concat(staff.first_name,' ',staff.last_name) AS Name,
+count(payment.amount) AS sales, 
+case 
+	when count(payment.amount) > 8000 
+		then 'Yes'
+		ELSE 'No'
+END AS 'cash_bonus'
+FROM staff
+INNER JOIN store ON staff.store_id=store.store_id
+INNER JOIN customer ON store.store_id=customer.store_id
+INNER JOIN payment ON customer.customer_id=payment.customer_id
+GROUP BY Name; 
+```
 
 
 ---
@@ -134,5 +182,27 @@ FROM payment
 
 **Выполнение задания 5.**
 
-
 ---
+Фильмы, которые не брали в аренду ,в таблице `rental_date` имеют значение `NULL`, получим их по условию `WHERE rental.rental_date IS NULL `  
+
+Запрос будет выглядеть так:
+
+```
+SELECT film.title AS 'movies', COUNT(*) AS 'Total'
+FROM film
+LEFT JOIN inventory ON film.film_id=inventory.film_id
+LEFT JOIN rental ON inventory.inventory_id=rental.inventory_id
+WHERE rental.rental_date IS NULL 
+GROUP BY movies
+ORDER BY film.title ASC
+```
+
+ ![films.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/films.JPG)
+
+
+Определим количество фильмов:
+ 
+ ![films_not_rent.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/films_not_rent.JPG)
+
+
+ 
