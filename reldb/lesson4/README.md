@@ -67,23 +67,23 @@ HAVING COUNT(customer.customer_id) > 300
 
 **Выполнение задания 2.**
 
-SELECT 
-film.title,
-film.length, 
--- ROUND(AVG(film.length)) AS 'AVG'
-	case ROUND(AVG(film.length))
-		when film.length then 'no ok'
-		ELSE 'ok'
-	END AS 'my_avg'	
- 
+
+```
+SELECT
+COUNT(1) AS 'count', (SELECT avg(film.length ) FROM sakila.film ) AS 'average'
 FROM sakila.film 
+WHERE 
+ case 
+ 	when film.length < (SELECT avg(film.length ) FROM sakila.film ) 
+		then 'over' 
+		ELSE TRUE
+	END
 
- GROUP BY film.length
 
--- HAVING ROUND(AVG(film.length)) < film.length 
+```
 
 
-ORDER BY film.length DESC;
+
 ---
 
 ### Задание 3
@@ -94,6 +94,22 @@ ORDER BY film.length DESC;
 ---
 
 **Выполнение задания 3.**
+SELECT 
+payment.amount,
+-- (select max(payment.amount)FROM payment),
+
+ max(payment.amount),
+payment.payment_date, 
+
+MONTHNAME(payment.payment_date) AS 'Month'
+ 
+FROM payment
+
+ GROUP BY Month
+
+ ORDER BY Month ASC
+
+
 
  
 ---
