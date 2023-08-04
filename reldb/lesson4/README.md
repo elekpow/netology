@@ -137,7 +137,40 @@ LIMIT 1;
  ![total_payments.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/total_payments.JPG)
 
 
+-------------------------
+
+
+```sql
+SELECT MAX(y.num) AS payment, MONTHNAME(y.my_date) AS Mohth, YEAR(y.my_date) AS Year
+FROM (SELECT COUNT(*) AS num, payment.payment_date AS my_date
+		FROM payment 
+		 JOIN rental ON payment.rental_id=rental.rental_id
+		GROUP BY MONTH(my_date)
+		) y			
+GROUP BY MONTH(y.my_date)
+ORDER BY MAX(y.num) DESC , MONTH(y.my_date) ;
+```
  
+ 
+ 
+ ```
+ SELECT MONTH(rental.rental_date) AS months,YEAR(rental.rental_date) AS years, 
+SUM(payment.amount) AS sum_payment,COUNT(rental.rental_id) AS rental_count
+
+
+
+
+FROM rental
+INNER JOIN payment ON payment.rental_id=rental.rental_id
+GROUP BY MONTH(rental.rental_date)
+
+HAVING rental_count = (SELECT COUNT(*) FROM payment 
+						INNER JOIN rental ON payment.rental_id=rental.rental_id
+						GROUP BY MONTH((payment.payment_date) )
+						ORDER BY sum(payment.amount) DESC LIMIT 1)
+
+ORDER BY YEAR(rental.rental_date), MONTH(rental.rental_date)
+ ```
  
 ---
 
