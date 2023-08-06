@@ -91,7 +91,7 @@ and p.customer_id = c.customer_id
 
 ```
 
- ![explain_analyze.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson5/images/explain_analyze.JPG)
+ ![explain_analyze1.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson5/images/explain_analyze1.JPG)
 
 
 
