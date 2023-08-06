@@ -68,7 +68,7 @@ where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and
 
 ```
 
- ![explain_analyze_1.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson2/images/explain_analyze_1.JPG)
+ ![explain_analyze_1.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson5/images/explain_analyze_1.JPG)
 
 
 Длительность за проса составила : 14,703 сек., как видно из результата наиболее узким место в запросе является применеие оконной функции 
@@ -91,7 +91,7 @@ and p.customer_id = c.customer_id
 
 ```
 
- ![explain_analyze.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson2/images/explain_analyze.JPG)
+ ![explain_analyze.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson5/images/explain_analyze.JPG)
 
 
 
