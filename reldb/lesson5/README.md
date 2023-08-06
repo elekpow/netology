@@ -3,16 +3,32 @@
 ### Задание 1
 
 Напишите запрос к учебной базе данных, который вернёт процентное отношение общего размера всех индексов к общему размеру всех таблиц.
+
 ---
 
 **Выполнение задания 1.**
 
 
+значения индексов получить через запарос к `INFORMATION_SCHEMA.TABLES`
+```
+SELECT index_length,data_length
+FROM INFORMATION_SCHEMA.TABLES 
+WHERE TABLE_SCHEMA = 'sakila';
+```
+
+Вычислим процентное отношение общего размера всех индексов к общему размеру всех таблиц:
+
+```
+SELECT table_schema AS 'DataBase' , 
+CONCAT(ROUND((SUM(index_length) * 100 / SUM(data_length)), 2), ' ', '%' )AS 'index/size'
+FROM INFORMATION_SCHEMA.TABLES 
+WHERE TABLE_SCHEMA = 'sakila';
 
 
+```
+ ![sakila_indexes.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson5/images/sakila_indexes.JPG)
 
-
-
+sakila_indexes
 
 
 ---
