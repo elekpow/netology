@@ -96,7 +96,7 @@ and p.customer_id = c.customer_id
 
 Сравним результаты :
  
-```
+```sql
 EXPLAIN ANALYZE 
 -- запрос----------------------
 
