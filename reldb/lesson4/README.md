@@ -99,78 +99,26 @@ WHERE
 **Выполнение задания 3.**
 
 Для получения информации о месяце с наибольшей суммой платежей нужно сгруппировать платежи по месяцам,и вычислить суммы платежей в каждом месяце. 
-
+Информация о количестве аренд за этот месяц, получена из таблицы `rental`.
 Ограничим результаты одной записью `LIMIT 1`, чтобы выбрать только месяц с наибольшей суммой.
 
 Запрос будет выглядеть следующим образом:
 
 ```sql
-SELECT COUNT(*) AS count_renatals, 
-MONTHNAME(payment.payment_date) AS months,
-YEAR(payment.payment_date) AS years 
-FROM payment
-INNER JOIN rental ON payment.rental_id=rental.rental_id
-GROUP BY months
-ORDER BY count_renatals DESC
+SELECT amount_payment AS 'Сумма платежей' ,CONCAT(years.month_x,' ', years.year_x) AS 'Период', years.num AS 'Количество аренд' 
+FROM
+ (SELECT COUNT(*) AS num,YEAR(x.rental_date) AS year_x, MONTHNAME(x.rental_date) AS month_x, SUM(payment.amount) AS amount_payment
+ FROM rental AS x   
+ INNER JOIN payment ON payment.rental_id=x.rental_id 
+ GROUP BY MONTH(x.rental_date) 
+ ORDER BY num DESC) AS years  
 LIMIT 1;
 ```
-
- ![count_renatals.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/count_renatals.JPG)
-
-Информация о количестве аренд за этот месяц, получена из таблицы `rental` .
-
-Запрос будет выглядеть так:
-
-```sql
-SELECT
-MONTHNAME(payment.payment_date) AS MONTH, 
-YEAR(payment.payment_date) AS YEARS, 
-sum(payment.amount) AS total_payments,
-COUNT(rental.rental_id)
-FROM payment
-INNER JOIN rental ON payment.rental_id=rental.rental_id
-GROUP BY MONTH
-ORDER BY total_payments DESC
-LIMIT 1;
-```
- 
- ![total_payments.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/total_payments.JPG)
-
-
--------------------------
-
-
-```sql
-SELECT MAX(y.num) AS payment, MONTHNAME(y.my_date) AS Mohth, YEAR(y.my_date) AS Year
-FROM (SELECT COUNT(*) AS num, payment.payment_date AS my_date
-		FROM payment 
-		 JOIN rental ON payment.rental_id=rental.rental_id
-		GROUP BY MONTH(my_date)
-		) y			
-GROUP BY MONTH(y.my_date)
-ORDER BY MAX(y.num) DESC , MONTH(y.my_date) ;
-```
- 
- 
- 
- ```
- SELECT MONTH(rental.rental_date) AS months,YEAR(rental.rental_date) AS years, 
-SUM(payment.amount) AS sum_payment,COUNT(rental.rental_id) AS rental_count
+ ![amount_payment.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson4/images/amount_payment.JPG)
 
 
 
 
-FROM rental
-INNER JOIN payment ON payment.rental_id=rental.rental_id
-GROUP BY MONTH(rental.rental_date)
-
-HAVING rental_count = (SELECT COUNT(*) FROM payment 
-						INNER JOIN rental ON payment.rental_id=rental.rental_id
-						GROUP BY MONTH((payment.payment_date) )
-						ORDER BY sum(payment.amount) DESC LIMIT 1)
-
-ORDER BY YEAR(rental.rental_date), MONTH(rental.rental_date)
- ```
  
 ---
 
