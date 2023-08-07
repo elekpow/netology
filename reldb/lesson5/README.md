@@ -80,9 +80,6 @@ where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and
 
 
 ```sql
-
--- оптимизированый запрос----------------------
-
 select DISTINCT concat(c.last_name, ' ', c.first_name) AS customer_name_1, 
 sum(p.amount) over (partition by c.customer_id) AS summ 
 from payment p,  customer c
@@ -98,16 +95,12 @@ and p.customer_id = c.customer_id
  
 ```sql
 EXPLAIN ANALYZE 
--- запрос----------------------
-
 select distinct concat(c.last_name, ' ', c.first_name), sum(p.amount) over (partition by c.customer_id, f.title)
 from payment p, rental r, customer c, inventory i, film f
 where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and r.customer_id = c.customer_id and i.inventory_id = r.inventory_id;
 /* Затронуто строк: 0  Найденные строки: 1  Предупреждения: 0  Длительность  1 запрос: 15,672 сек. */
 
 EXPLAIN ANALYZE 
--- оптимизированый запрос----------------------
-
 select DISTINCT concat(c.last_name, ' ', c.first_name) AS customer_name_1, 
 sum(p.amount) over (partition by c.customer_id) AS summ 
 from payment p,  customer c
