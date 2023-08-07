@@ -111,13 +111,13 @@ where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and
 
 
 
- ![explain_index_.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson5/images/explain_index_2.JPG)
+ ![explain_index_2.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson5/images/explain_index_2.JPG)
  
 
  **inventory_id**, **payment_date** имеют значение -  **Extra: Using index**,  Это означает, что данные читаются из индекса, СУБД загружает все данные из него и возвращает результат.
  
  
-  ![indexes_.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson5/images/indexes.JPG)
+  ![indexes.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson5/images/indexes.JPG)
  
 
 
