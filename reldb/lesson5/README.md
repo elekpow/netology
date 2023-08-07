@@ -78,7 +78,7 @@ where date(p.payment_date) = '2005-07-30' and p.payment_date = r.rental_date and
 
 Пробую изменить Запрос. 
 
-```
+```sql
 -- оптимизированый запрос   -------------------------------------------------
 
  SELECT DISTINCT concat(c.last_name, ' ', c.first_name) AS customer_name_1, sum(p.amount)  AS summ														
