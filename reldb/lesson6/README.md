@@ -36,104 +36,250 @@
 Для развертывания двух серверов с СУБД MySQL используем облачную плтаформу Yandex Cloud.
 Создадим  структуру из двух серверов. Настроим MySQL.
 
+Развертываение будет осуществляться через terraform, настройка MySQL через Ansible.
 
 ```
-├── ansible
-│   ├── ansible.cfg
-│   ├── install.yml
-│   ├── inventory
-│   ├── logs
-│   │   └── ansible.log
-│   ├── master.yml
-│   ├── slave.yml
-├── files
-│   ├── docker-compose.yml
-├── get-docker.sh
-├── infrastructure1.tf
-├── main.tf
-├── metadata.yml
-├── outputs.tf
-├── ssh-agent.sh
-└── variables.tf
-```
+igor@deb1:~/project3/project2$ tree
+.
+|-- ansible
+|   |-- ansible.cfg
+|   |-- config
+|   |   |-- conf-server_id.cnf
+|   |   |-- conf-server_id_2.cnf
+|   |   |-- docker-compose.yml
+|   |   |-- docker-compose_2.yml
+|   |   `-- set-permission.sql
+|   |-- install.yml
+|   |-- inventory
+|   |-- logs
+|   |   `-- ansible.log
+|   |-- master.yml
+|   `-- slave.yml
+|-- infrastructure1.tf
+|-- main.tf
+|-- metadata.yml
+|-- outputs.tf
+|-- ssh-agent.sh
+`-- variables.tf
 
-На два сервера будут установлены СУБД MySQL  с конфигурациями для Master-сервера и slave-сервера
-
-Установка MySQL через ansible, который задаст необхоиме настройки
-
-
-
-конфигурация для Master-сервера 
-```
----
-- name: master module
-  hosts: all
-  become: yes
-  tasks:
-  - name:  "create master my.cnf"
-   # become: true
-    copy:
-      dest: "/tmp/docker/my.cnf"
-      content: |
-        [mysqld]
-        bind-address=0.0.0.0
-        server_id = 1
-        log_bin=/var/log/mysql/mybin.log
-		log_bin = mysql-bin
 
 ```
-конфигурация для slave-сервера
+
+На два сервера будут установлены СУБД MySQL в **docker** с конфигурациями для Master-сервера и slave-сервера
+
+Установка MySQL через ansible, который задаст необхоимые настройки
+
+Для автоматизации установки в **terraform** в параметре **provisioner "local-exec"** зададим конфигурацию Ansible , для первоначальной подговтовке серверов.
+
+
+
 ```
----
-- name: slave module
-  hosts: all
-  become: yes
-  tasks:
-  - name:  "create slave my.cnf"
-   # become: true
-    copy:
-      dest: "/tmp/docker/my.cnf"
-      content: |
-        [mysqld]
-        bind-address=0.0.0.0
-		log_bin = mysql-bin
-		server_id = 2
-		relay-log = /var/lib/mysql/mysql-relay-bin
-		relay-log-index = /var/lib/mysql/mysql-relay-bin.index
-		read_only = 1
+## ANSIBLE first install
+ provisioner "local-exec" {
+   command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i '${self.network_interface.0.nat_ip_address},' ./ansible/install.yml"
+ }
+}
 ```
 
+
+выполним генерацию ключей `$ ssh-keygen` и выполним `eval "$(ssh-agent -s)"` и `ssh-add ~/.ssh/id_rsa` для того что бы менеджер ключей запомнил ключ.
+
+публичный ключ добавим в `metadata.yml`, для того что бы иметь доступ к серверам
+
+
+в секции  **provisioner "local-exec"** укажем `agent = true`
+```
+    connection {
+     ....
+     agent = true
+	 ....
+   }
+```
+
+
+
+
+На каждой виртуальное машине через docker compose создадим контейнер с MySQL сервером, сразу же укажем пароль для root
+
+```
+    image: mysql:8.0
+    container_name: replication-slave
+    restart: unless-stopped
+    environment:
+      - MYSQL_USER=replication  
+      - MYSQL_ROOT_PASSWORD=mq!2saFw6
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    ports:
+      - "3306:3306"
+    volumes:
+      # Files      
+      - /tmp/docker/config:/etc/mysql/conf.d/
+      # Dir      
+      - /tmp/docker/init:/docker-entrypoint-initdb.d
+      - /tmp/docker/dump:/dump
+      # volumes
+      - mysql-data:/var/lib/mysql
+      - mysql-logs:/var/log/mysql
+```
+
+**в директории `/tmp/docker/config` файл конфигурации сервера `my.cnf`** 
+
+
+**конфигурация MySQL для Master-сервера (conf-server_id.cnf)**
+```
+[mysqld]
+bind-address=0.0.0.0
+server_id = 1
+log_bin=mysql-bin
+```
+**конфигурация MySQL для slave-сервера  (conf-server_id_2.cnf)**
+```
+[mysqld]
+bind-address=0.0.0.0
+server_id = 2
+log_bin         = mysql-bin
+relay_log       = mysql-relay
+relay-log-index = mysql-relay-bin.index
+read_only = 1
+```
+
+**Диретория `/tmp/docker/init` содержит файл **set-permission.sql**, в котором создаем пользователя с правами на репликацию данных, а также пропишем необхоимые привилегии.
+
+```
+USE mysql;
+CREATE USER 'replication'@'%';
+CREATE USER 'replication'@'localhost';
+
+ALTER USER 'replication' IDENTIFIED WITH mysql_native_password BY 'Pass12345';
+
+GRANT ALL PRIVILEGES ON *.* TO 'replication'@'%';
+FLUSH PRIVILEGES;
+GRANT ALL PRIVILEGES ON *.* TO 'replication'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+Получаем ip адреса серверов
 
  ![img1.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson6/images/img1.JPG)
- 
+
+
+**Настроим master сервер**
+
+с помощью Ansible настроим конфигурацию
+
+```
+ansible-playbook ./ansible/master.yml -i "158.160.59.151,"
+```
+
  ![img2.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson6/images/img2.JPG)
 
+подключаемся  к первому серверу: `ssh igor@158.160.59.151`
 
-состояние Мастер сервера
+заходим в MySQL
+```
+sudo docker exec -it replication-master mysql -uroot -p
 
+Enter password:
+```
+
+проверим id сервера и статус
+
+```
+show variables like 'server_id'; SHOW MASTER STATUS\G;
+```
+
+Убедимся, что пользователь созданый для репоикации данных существует:
+
+```
+SELECT user,host FROM mysql.user;
+````
+
+Проверим существующие базы данных:
+
+```
+SHOW DATABASES;
+```
 
  ![master.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson6/images/master.JPG)
 
 
-Создаем пользователь с правами репликации
+
+
+Открываем новую консоль:
+
+**Настроим slave сервер**
+
+также с помощью Ansible настроим конфигурацию
 
 ```
-CREATE USER 'replication'@'%' IDENTIFIED WITH mysql_native_password BY 'Pass12345';
-GRANT REPLICATION SLAVE ON *.* TO 'replication'@'%';
-
-ALTER USER 'replication' IDENTIFIED WITH mysql_native_password BY 'Pass12345';
+ansible-playbook ./ansible/slave.yml -i "158.160.97.240,"
 ```
 
-Конфигурция slave-сервера
+Теперь подключаемся ко второму серверу : `ssh igor@58.160.97.240`
+
+заходим в MySQL
 ```
-CHANGE MASTER TO MASTER_HOST='192.168.10.17', MASTER_USER='replication', MASTER_PASSWORD='Pass1234', MASTER_LOG_FILE='mysql-bin.000003', MASTER_LOG_POS = 1735;
+sudo docker exec -it replication-slave mysql -uroot -p
+
+Enter password:
 ```
 
+проверим id сервера 
+```
+show variables like 'server_id';
+
+````
 
  ![slave.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson6/images/slave.JPG)
 
 
-На этом этапе возникла ошибка (Error connecting to source), пока в процессе устранения
+Пропишем в базе данных на сервер slave, информацию о master сервере, а также данные полученные в **File** и **Position**
+
+```
+CHANGE MASTER TO MASTER_HOST='192.168.10.34', MASTER_USER='replication', MASTER_PASSWORD='Pass12345', MASTER_LOG_FILE='mysql-bin.000003', MASTER_LOG_POS = 157;
+```
+Запустим  сервер `START SLAVE; ` и проверим статус: `SHOW SLAVE STATUS\G;`
+
+ ![slave-status.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson6/images/slave-status.JPG)
+
+------
+Что бы убедиться что репликация осуществляется на мастер-сервер создадим базу данных  ` CREATE DATABASE  testDb1;`
+
+
+сравним выводы двух серверов:
+
+ ![createDb1.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson6/images/createDb1.JPG)
+ 
+ 
+ ![log-status.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson6/images/log-status.JPG)
+
+
+
+**В случае ошибки репликации. Делаем дамп базы данных и переносим на другой сервер**
+
+на master сервере:
+
+в консоли mysql выполняем:`FLUSH TABLES WITH READ LOCK;`, затем выходим `\q`
+
+выполняем Дамп:
+
+```
+mysqldump -v  -uroot -p  --all-databases --master-data > /tmp/dump/dump.sql
+
+```
+подключаемся к севреру  ` mysql -u root -p` и разблокируем таблицы `UNLOCK TABLES;`
+
+
+** копируем дамп на другой сервер**
+
+```
+ scp /tmp/docker/dump/dump.sql igor@192.168.10.23:/tmp/dump
+ 
+```
+подключаемся ко второму севреру, и выполняем `mysql -u root -p < /tmp/dump/dump.db` и заупскаем репликацию 
+
+
+
 
 
 

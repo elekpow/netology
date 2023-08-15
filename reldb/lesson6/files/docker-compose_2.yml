@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  mysql-my:
+    image: mysql:8.0
+    container_name: replication-slave
+    restart: unless-stopped
+    environment:
+      - MYSQL_USER=replication  
+      - MYSQL_ROOT_PASSWORD=mq!2saFw6
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    ports:
+      - "3306:3306"
+    volumes:
+      # Files      
+      - /tmp/docker/config:/etc/mysql/conf.d/
+      # Dir      
+      - /tmp/docker/init:/docker-entrypoint-initdb.d
+      - /tmp/docker/dump:/dump
+      # volumes
+      - mysql-data:/var/lib/mysql
+      - mysql-logs:/var/log/mysql
+    command:
+      [
+      --character-set-server=utf8mb4,
+      --collation-server=utf8mb4_unicode_ci,
+      ]
+    networks:
+      - compose_network
+volumes:
+    mysql-data:
+    mysql-logs:
+networks:
+    compose_network:
