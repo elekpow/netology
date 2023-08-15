@@ -304,7 +304,7 @@ CHANGE MASTER TO MASTER_HOST='192.168.10.23', MASTER_USER='replication', MASTER_
   
  Запустим  сервер `START SLAVE; ` и проверим статус: `SHOW SLAVE STATUS\G;`
  
- ![master-master.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson6/images/master-master.JPG)
+ ![master-master_.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson6/images/master-master_.JPG)
 
 
 ---
