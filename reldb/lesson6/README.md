@@ -271,7 +271,9 @@ mysqldump -v  -uroot -p  --all-databases --master-data > /tmp/dump/dump.sql
 ```
 подключаемся ко второму севреру, и выполняем воссатновление базы данных
  
-```mysql -u root -p < /tmp/dump/dump.db``` 
+```
+mysql -u root -p < /tmp/dump/dump.db
+``` 
 
 
 
