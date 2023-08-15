@@ -255,28 +255,23 @@ CHANGE MASTER TO MASTER_HOST='192.168.10.34', MASTER_USER='replication', MASTER_
 
 
 
-**В случае ошибки репликации. Делаем дамп базы данных и переносим на другой сервер**
+*Дамп базы данных и копирование на другой сервер**
 
-на master сервере:
-
-в консоли mysql выполняем:`FLUSH TABLES WITH READ LOCK;`, затем выходим `\q`
-
-выполняем Дамп:
-
+на master сервере: в консоли **mysql** выполняем:`FLUSH TABLES WITH READ LOCK;`, затем выходим `\q` и выполняем Дамп:
 ```
 mysqldump -v  -uroot -p  --all-databases --master-data > /tmp/dump/dump.sql
 
 ```
 подключаемся к севреру  ` mysql -u root -p` и разблокируем таблицы `UNLOCK TABLES;`
 
-
 ** копируем дамп на другой сервер**
-
 ```
  scp /tmp/docker/dump/dump.sql igor@192.168.10.23:/tmp/dump
  
 ```
-подключаемся ко второму севреру, и выполняем `mysql -u root -p < /tmp/dump/dump.db` и заупскаем репликацию 
+подключаемся ко второму севреру, и выполняем воссатновление базы данных
+ 
+```mysql -u root -p < /tmp/dump/dump.db``` 
 
 
 
