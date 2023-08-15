@@ -275,7 +275,39 @@ mysqldump -v  -uroot -p  --all-databases --master-data > /tmp/dump/dump.sql
 mysql -u root -p < /tmp/dump/dump.db
 ``` 
 
+---
 
+### Задание 3* 
+
+Выполните конфигурацию master-master репликации. Произведите проверку.
+
+*Приложите скриншоты конфигурации, выполнения работы: состояния и режимы работы серверов.*
+
+---
+
+**Выполнение задания 3.**
+
+Проверим статуc:
+
+`SHOW MASTER STATUS\G;` **File** и **Position**
+
+ ![slave_m2.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson6/images/slave_m2.JPG)
+ 
+ 
+выполним на первом сервере команду: 
+ 
+ ```
+CHANGE MASTER TO MASTER_HOST='192.168.10.23', MASTER_USER='replication', MASTER_PASSWORD='Pass12345', MASTER_LOG_FILE='mysql-bin.000003', MASTER_LOG_POS = 554;
+```
+  
+  В этом случае второй сервер для первого стал мастером.  
+  
+ Запустим  сервер `START SLAVE; ` и проверим статус: `SHOW SLAVE STATUS\G;`
+ 
+ ![master-master.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson6/images/master-master.JPG)
+
+
+---
 
 
 
