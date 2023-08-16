@@ -5,9 +5,8 @@ services:
     container_name: replication-slave
     restart: unless-stopped
     environment:
-      - MYSQL_USER=replication  
-      - MYSQL_ROOT_PASSWORD=mq!2saFw6
-      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      MYSQL_ROOT_PASSWORD: mq!2saFw6
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
     ports:
       - "3306:3306"
     volumes:
@@ -21,6 +20,7 @@ services:
       - mysql-logs:/var/log/mysql
     command:
       [
+      --default-authentication-plugin=mysql_native_password,
       --character-set-server=utf8mb4,
       --collation-server=utf8mb4_unicode_ci,
       ]
