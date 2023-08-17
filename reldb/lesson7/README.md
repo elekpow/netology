@@ -48,13 +48,15 @@ DRBD (Distributed Replicated Block Device — распределённое ре�
 
 **Выполнение задания 2.**
 
-
+```
 CREATE TABLE users(
     id INT AUTO_INCREMENT PRIMARY KEY,
 	FirstName VARCHAR(30) NOT NULL,
 	MiddleName VARCHAR(30) NOT NULL,
     LastName VARCHAR(30) NOT NULL,
-    email VARCHAR(30) UNIQUE
+	Age INT,
+    email VARCHAR(30) UNIQUE,
+	Company VARCHAR(30) NOT NULL	
 );
 
 CREATE TABLE books(
@@ -68,14 +70,20 @@ CREATE TABLE books(
 CREATE TABLE shops(
     id INT AUTO_INCREMENT PRIMARY KEY,
     Name VARCHAR(25) NOT NULL,
-	City   INT,
-    Addres VARCHAR(50) NOT NULL
+    Addres VARCHAR(50) NOT NULL,
+	Description VARCHAR(150) NOT NULL
 
 );
+```
+
+[databases.drawio](https://github.com/elekpow/netology/blob/main/reldb/lesson7/files/databases.drawio) 
 
 
+ ![databases_1.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson7/images/databases_1.JPG)
+ 
+  ![databases_2.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson7/images/databases_2.JPG)
 
-https://app.eraser.io/workspace/8wQxXLXsn0jFXFrlxoZa
+
 
 
 
