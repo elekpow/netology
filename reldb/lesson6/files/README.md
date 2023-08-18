@@ -34,7 +34,7 @@ terraform output выведет ip адреса серверов
 
 подключение к ним выполняем просто `ssh <UserName>@<ip>`
 
-сразу же захоим в докер контейнер , **replication-master** ' ' это  имя контейнера
+сразу же захоим в докер контейнер , **replication-master**  это  имя контейнера
 
 ```
 sudo docker exec -it replication-master sh 
