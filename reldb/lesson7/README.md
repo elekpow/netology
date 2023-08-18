@@ -76,12 +76,18 @@ CREATE TABLE shops(
 );
 ```
 
+Разделение данных по сущностям: 
+
+
+
+
+
 [databases.drawio](https://github.com/elekpow/netology/blob/main/reldb/lesson7/files/databases.drawio) 
 
 
  ![databases_1.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson7/images/databases_1.JPG)
  
-  ![databases_2.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson7/images/databases_2.JPG)
+ ![databases_2.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson7/images/databases_2.JPG)
 
 
 
