@@ -1,0 +1,137 @@
+---
+- name: master module
+  hosts: master
+  become: yes
+  tasks:   
+  - name: Creates directory config
+    file:
+      path: /tmp/docker/{{item}}
+      owner: "{{ lookup('env','USER') }}" 
+      group: "{{ lookup('env','USER') }}"
+      mode: 0755 
+      state: directory 
+    with_items:
+    - 'config'
+    - 'init'
+    - 'dump'
+    - 'log'     
+  - name: Install aptitude
+    apt:
+      name: aptitude
+      state: latest
+      update_cache: true
+  - name: Install required system packages
+    apt:
+      pkg:
+       - python-minimal
+       - software-properties-common
+       - python3-pip
+       - virtualenv
+       - python3-setuptools
+      state: latest
+      update_cache: true    
+        
+  - name: copy file "conf-server_id.cnf"  
+    copy:
+      src: config/conf-server_id.cnf
+      dest: /tmp/docker/config/my.cnf
+      mode: '0644'
+      owner: "{{ lookup('env','USER') }}" 
+      group: "{{ lookup('env','USER') }}"
+    
+  - name: copy file "set-permission.sql""  
+    copy:
+      src: config/set-permission.sql
+      dest: /tmp/docker/init/set-permission.sql
+      mode: '0644'
+      owner: "{{ lookup('env','USER') }}" 
+      group: "{{ lookup('env','USER') }}"
+    
+  - name: copy  file "docker-compose.yml"
+    copy:
+      src: config/docker-compose.yml
+      dest: /tmp/docker/docker-compose.yml
+      mode: '0644'
+      owner: "{{ lookup('env','USER') }}" 
+      group: "{{ lookup('env','USER') }}"
+            
+#############################################################
+  - name:  "docker master compose command_result"
+   # become: true
+    shell: "docker compose down -v  && docker compose up -d && docker ps -a "
+    register: command_result
+    args:
+      chdir: /tmp/docker
+  - debug:
+      msg: "{{ command_result.stdout_lines }}"
+
+- name: slave module
+  hosts: slave
+  become: yes
+  tasks:   
+  - name: Creates directory config
+    file:
+      path: /tmp/docker/{{item}}
+      owner: "{{ lookup('env','USER') }}" 
+      group: "{{ lookup('env','USER') }}"
+      mode: 0755 
+      state: directory 
+    with_items:
+    - 'config'
+    - 'init'
+    - 'dump'
+    - 'log'    
+    
+  - name: Install aptitude
+    apt:
+      name: aptitude
+      state: latest
+      update_cache: true
+  - name: Install required system packages
+    apt:
+      pkg:
+       - python-minimal
+       - software-properties-common
+       - python3-pip
+       - virtualenv
+       - python3-setuptools
+      state: latest
+      update_cache: true   
+        
+  - name: copy file "conf-server_id_2.cnf""  
+    copy:
+      src: config/conf-server_id_2.cnf 
+      dest: /tmp/docker/config/my.cnf 
+      mode: '0644'
+      owner: "{{ lookup('env','USER') }}" 
+      group: "{{ lookup('env','USER') }}"
+    
+  - name: copy file "set-permission.sql""  
+    copy:
+      src: config/set-permission.sql
+      dest: /tmp/docker/init/set-permission.sql
+      mode: '0644'
+      owner: "{{ lookup('env','USER') }}" 
+      group: "{{ lookup('env','USER') }}"
+    
+  - name: copy  file "docker-compose.yml"
+    copy:
+      src: config/docker-compose_2.yml
+      dest: /tmp/docker/docker-compose.yml
+      mode: '0644'
+      owner: "{{ lookup('env','USER') }}" 
+      group: "{{ lookup('env','USER') }}"
+    
+#############################################################
+  - name:  "docker slave compose command_result"
+   # become: true
+    shell: "docker compose down -v  && docker compose up -d && docker ps -a "
+    register: command_result
+    args:
+      chdir: /tmp/docker
+  - debug:
+      msg: "{{ command_result.stdout_lines }}"
+
+
+
+

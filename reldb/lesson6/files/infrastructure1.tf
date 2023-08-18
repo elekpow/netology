@@ -44,12 +44,18 @@ resource "yandex_compute_instance" "vm-ter" {
    }
 }
 
-
-## ANSIBLE first install
- provisioner "local-exec" {
-   command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i '${self.network_interface.0.nat_ip_address},' ./ansible/install.yml"
+## ANSIBLE inventory
+provisioner "local-exec" {
+   command = " echo '[${var.hostnames[count.index]}]\n${self.network_interface.0.nat_ip_address}' >> inventory"
  }
+ 
+ ## ANSIBLE first install
+ provisioner "local-exec" {
+   command = "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ./inventory ./ansible/servers.yml"
+ }
+  
 }
+
 ## network
 resource "yandex_vpc_network" "network_ter" {
   name = "net_ter[count.index]"
@@ -62,4 +68,10 @@ resource "yandex_vpc_subnet" "subnet_ter" {
   v4_cidr_blocks = ["192.168.10.0/24"]
 }
 
+###### null_resource_inventory
+  resource "null_resource" "vm-hosts" {
+  provisioner "local-exec" {
+    command = "rm -rf ./inventory"
+  }
+}
 
