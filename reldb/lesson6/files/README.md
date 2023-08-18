@@ -19,10 +19,3 @@ sudo docker exec -it replication-slave mysql -uroot -p
 sudo docker exec -it replication-master mysql -u root -p
 ```
 ---
-
-https://losst.pro/oshibka-your-password-does-not-satisfy-the-current-policy-requirements-mysql
-
-
-https://jeka.by/post/1069/mysql-outside-access/
-
-
