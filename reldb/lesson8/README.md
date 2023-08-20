@@ -115,6 +115,32 @@ mysqldump -v  -uroot -p  --all-databases --master-data > /tmp/dump/dump.sql
 подключаемся к севреру  ` mysql -u root -p` и разблокируем таблицы `UNLOCK TABLES;`
 
 
+**Создание инкрементных бекапа:**
+
+```
+mysqldump -uroot -p --all-databases --single-transaction --flush-logs --master-data=2 > full_backup.sql
+```
+
+при создании полного бекапа используем флаг ** --flush-logs**,  закроет текущие журналы (mysql-bin.000001) и создаст новый (mysql-bin.000002).
+
+
+Очистим log:
+```
+mysqladmin -uroot -p flush-logs
+```
+
+Восстановление данных MySQL из двоичного журнала, сохраненного в файле mysql-bin.000002.
+
+```
+mysqlbinlog /var/log/mysql/mysql-bin.000002 | mysql -uroot -p mydb
+```
+
+
+
+
+
+
+3.1.* 
 
 
 
