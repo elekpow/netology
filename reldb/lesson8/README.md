@@ -115,6 +115,7 @@ pg_restore -a -t tbl "path/file.dump"
 ```
 mysqldump -v  -uroot -p  --all-databases --master-data > /tmp/dump/dump.sql
 
+mq!2saFw6
 ```
 подключаемся к севреру  ` mysql -u root -p` и разблокируем таблицы `UNLOCK TABLES;`
 
@@ -122,7 +123,10 @@ mysqldump -v  -uroot -p  --all-databases --master-data > /tmp/dump/dump.sql
 **Создание инкрементных бекапа:**
 
 ```
-mysqldump -uroot -p --all-databases --single-transaction --flush-logs --master-data=2 > full_backup.sql
+mysqldump -uroot -p -databases test --single-transaction --flush-logs --master-data=2 > full_backup.sql
+
+
+
 ```
 
 при создании полного бекапа используем флаг ** --flush-logs**,  закроет текущие журналы (mysql-bin.000001) и создаст новый (mysql-bin.000002).
@@ -138,6 +142,77 @@ mysqladmin -uroot -p flush-logs
 ```
 mysqlbinlog /var/log/mysql/mysql-bin.000002 | mysql -uroot -p mydb
 ```
+
+```
+version: '3.8'
+services:
+  mysql-my:
+    image: mysql:8.0
+    container_name: replication-master
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./config/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./dump:/dump
+      - ./log:/var/log/mysql
+      # volumes
+      - mysql-data:/var/lib/mysql
+    user: root
+    command:
+      [
+      --character-set-server=utf8mb4,
+      --collation-server=utf8mb4_unicode_ci,
+      ]
+    networks:
+      - compose_network
+volumes:
+    mysql-data:
+networks:
+    compose_network:
+```
+
+
+
+
+SHOW databases;
+
+CREATE database test;
+
+
+CREATE table users(
+id INT AUTO_INCREMENT PRIMARY KEY,
+FirstName VARCHAR(30),
+MiddleName VARCHAR(30),
+LastName VARCHAR(30),
+Age INT,
+email VARCHAR(30),
+Company VARCHAR(30)	
+);
+
+
+SHOW tables FROM test;
+
+SELECT * FROM users;
+
+SELECT `COLUMN_NAME` 
+FROM `INFORMATION_SCHEMA`.`COLUMNS` 
+WHERE `TABLE_SCHEMA`='test' AND `TABLE_NAME`='users';
+
+
+ INSERT INTO users(FirstName) VALUES ("User1") ;
+
+
+
+1)
+mysqldump -v -uroot -p --databases test --single-transaction --flush-logs --source-data=2 > /dump/test_full_backup.sql
+
+
+2)
+mysqladmin -uroot -p flush-logs
 
 
 
