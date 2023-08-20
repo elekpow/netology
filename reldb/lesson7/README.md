@@ -55,32 +55,32 @@ DRBD (Distributed Replicated Block Device — распределённое ре�
 "пользователи" 
 
 users(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-	FirstName VARCHAR(30) NOT NULL,
-	MiddleName VARCHAR(30) NOT NULL,
-    LastName VARCHAR(30) NOT NULL,
-	Age INT,
-    email VARCHAR(30) UNIQUE,
-	Company VARCHAR(30) NOT NULL	
+id INT AUTO_INCREMENT PRIMARY KEY,
+FirstName VARCHAR(30) NOT NULL,
+MiddleName VARCHAR(30) NOT NULL,
+LastName VARCHAR(30) NOT NULL,
+Age INT,
+email VARCHAR(30) UNIQUE,
+Company VARCHAR(30) NOT NULL	
 );
 
 "книги"
 
 books(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    BookName VARCHAR(100) NOT NULL,
-    Publisher VARCHAR(50) NOT NULL,
-	Category  INT,
-	Author INT
+id INT AUTO_INCREMENT PRIMARY KEY,
+BookName VARCHAR(100) NOT NULL,
+Publisher VARCHAR(50) NOT NULL,
+Category  INT,
+Author INT
 );
 
 "магазины" 
 
 shops(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    Name VARCHAR(25) NOT NULL,
-    Addres VARCHAR(50) NOT NULL,
-	Description VARCHAR(150) NOT NULL
+id INT AUTO_INCREMENT PRIMARY KEY,
+Name VARCHAR(25) NOT NULL,
+Addres VARCHAR(50) NOT NULL,
+Description VARCHAR(150) NOT NULL
 
 );
 ```
