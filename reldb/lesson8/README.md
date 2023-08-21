@@ -180,39 +180,58 @@ networks:
 
 SHOW databases;
 
-CREATE database test;
+CREATE database test;use test;
+
+CREATE table users(id INT AUTO_INCREMENT PRIMARY KEY,FirstName VARCHAR(30),MiddleName VARCHAR(30),LastName VARCHAR(30),Age INT,email VARCHAR(30),Company VARCHAR(30));
 
 
-CREATE table users(
-id INT AUTO_INCREMENT PRIMARY KEY,
-FirstName VARCHAR(30),
-MiddleName VARCHAR(30),
-LastName VARCHAR(30),
-Age INT,
-email VARCHAR(30),
-Company VARCHAR(30)	
-);
 
+
+SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='test' AND `TABLE_NAME`='users';
+
+
+use test; INSERT INTO users(FirstName) VALUES ("User1") ;
+
+
+
+mysql:
+
+mysql -uroot -p123456
 
 SHOW tables FROM test;
+use test; SELECT * FROM users;
 
-SELECT * FROM users;
-
-SELECT `COLUMN_NAME` 
-FROM `INFORMATION_SCHEMA`.`COLUMNS` 
-WHERE `TABLE_SCHEMA`='test' AND `TABLE_NAME`='users';
-
-
- INSERT INTO users(FirstName) VALUES ("User1") ;
-
-
+use test; INSERT INTO users(FirstName) VALUES ("User1") ;
 
 1)
+
+
+
 mysqldump -v -uroot -p --databases test --single-transaction --flush-logs --source-data=2 > /dump/test_full_backup.sql
 
 
 2)
+
+ls -la /var/log/mysql
+
+mysqldump -v -uroot -p --databases test --single-transaction --flush-logs --source-data=2 > /dump/test_full_backup.sql
+
+
+
+----------------------------------------------------------------
+
+
+mysqldump -v -uroot -p --databases test --single-transaction --flush-logs --source-data=2 > /dump/test_full_backup.sql
+
+
+
 mysqladmin -uroot -p flush-logs
+
+
+mysql -u root -p test < /dump/test_full_backup.sql
+
+
+mysqlbinlog /var/log/mysql/mysql-bin.000002 | mysql -uroot -p mydb
 
 
 
