@@ -86,12 +86,6 @@ pg_restore -a -t tbl "path/file.dump"
 2.1.* автоматизация процесса резервирования данных и восстановления БД 
 
 
-
-
-
-
-
-
 ---
 
 ### Задание 3. MySQL
@@ -107,132 +101,133 @@ pg_restore -a -t tbl "path/file.dump"
 **Выполнение задания 3.**
 
 
-полное резервное копирование:
+Инкрементное резервное копирование MySQL:
 
-*Дамп базы данных и копирование на другой сервер**
-
-на master сервере: в консоли **mysql** выполняем:`FLUSH TABLES WITH READ LOCK;`, затем выходим `\q` и выполняем Дамп:
+**настройка mysql log**
 ```
-mysqldump -v  -uroot -p  --all-databases --master-data > /tmp/dump/dump.sql
-
-mq!2saFw6
-```
-подключаемся к севреру  ` mysql -u root -p` и разблокируем таблицы `UNLOCK TABLES;`
-
-
-**Создание инкрементных бекапа:**
-
-```
-mysqldump -uroot -p -databases test --single-transaction --flush-logs --master-data=2 > full_backup.sql
-
-
-
+[mysqld]
+bind-address    = 127.0.0.1
+server-id       = 1
+log_bin         = /var/log/mysql/mysql-bin.log
+expire_logs_days = 10
 ```
 
-при создании полного бекапа используем флаг ** --flush-logs**,  закроет текущие журналы (mysql-bin.000001) и создаст новый (mysql-bin.000002).
+1) Создадим базу данных **'test'** и в ней таблицу **'Users'**
 
-
-Очистим log:
-```
-mysqladmin -uroot -p flush-logs
-```
-
-Восстановление данных MySQL из двоичного журнала, сохраненного в файле mysql-bin.000002.
-
-```
-mysqlbinlog /var/log/mysql/mysql-bin.000002 | mysql -uroot -p mydb
+```sql
+CREATE database test; 
+USE test;
+CREATE table test.users( id INT AUTO_INCREMENT PRIMARY KEY, FirstName VARCHAR(30));
 ```
 
-```
-version: '3.8'
-services:
-  mysql-my:
-    image: mysql:8.0
-    container_name: replication-master
-    restart: unless-stopped
-    environment:
-      - MYSQL_ROOT_PASSWORD=123456
-      - MYSQL_ALLOW_EMPTY_PASSWORD=true
-    ports:
-      - "3306:3306"
-    volumes:
-      - ./config/my.cnf:/etc/mysql/conf.d/my.cnf
-      - ./dump:/dump
-      - ./log:/var/log/mysql
-      # volumes
-      - mysql-data:/var/lib/mysql
-    user: root
-    command:
-      [
-      --character-set-server=utf8mb4,
-      --collation-server=utf8mb4_unicode_ci,
-      ]
-    networks:
-      - compose_network
-volumes:
-    mysql-data:
-networks:
-    compose_network:
-```
+2) В базе данных появилась таблица **users**
 
-
-
+```sql
+mysql -uroot -p
 
 SHOW databases;
-
-CREATE database test;use test;
-
-CREATE table users(id INT AUTO_INCREMENT PRIMARY KEY,FirstName VARCHAR(30),MiddleName VARCHAR(30),LastName VARCHAR(30),Age INT,email VARCHAR(30),Company VARCHAR(30));
-
-
-
-
-SELECT `COLUMN_NAME` FROM `INFORMATION_SCHEMA`.`COLUMNS` WHERE `TABLE_SCHEMA`='test' AND `TABLE_NAME`='users';
-
-
-use test; INSERT INTO users(FirstName) VALUES ("User1") ;
-
-
-
-mysql:
-
-mysql -uroot -p123456
-
 SHOW tables FROM test;
-use test; SELECT * FROM users;
+USE test; 
+SELECT * FROM users;
+```
 
-use test; INSERT INTO users(FirstName) VALUES ("User1") ;
+ ![img1.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson8/images/img1.JPG)
 
-1)
+3) запишем в таблицу не сколько значений
+
+```sql
+mysql -uroot -p
+
+USE test; 
+INSERT INTO users(FirstName) VALUES ("User1"),("User2"),("User3"),("User4");
+
+```
+ ![img2.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson8/images/img2.JPG)
+ 
+4) создадим полный бекап базы данных
+
+выходим из консоли mysql `$mysql> \q` и воспользуемся утилитой `mysqldump` с помощью которой получим дамп содержимого базы данных.
+
+```sql
+mkdir ./dump
+
+mysqldump -v -uroot -p --databases test --single-transaction --flush-logs --source-data=2 > ./dump/full_backup.sql
+
+ls -la ./dump/
+
+```
+
+при создании полного бекапа используем флаг ** --flush-logs**, он закроет текущий журнал (mysql-bin.000001) и создаст новый (mysql-bin.000002).
 
 
-
-mysqldump -v -uroot -p --databases test --single-transaction --flush-logs --source-data=2 > /dump/test_full_backup.sql
-
-
-2)
-
-ls -la /var/log/mysql
-
-mysqldump -v -uroot -p --databases test --single-transaction --flush-logs --source-data=2 > /dump/test_full_backup.sql
+ ![img3.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson8/images/img3.JPG)
 
 
+5) Очистим log
 
-----------------------------------------------------------------
-
-
-mysqldump -v -uroot -p --databases test --single-transaction --flush-logs --source-data=2 > /dump/test_full_backup.sql
-
-
-
+```sql
 mysqladmin -uroot -p flush-logs
 
+```
 
-mysql -u root -p test < /dump/test_full_backup.sql
+если внести данные , то они запишуться в новый журнал **mysql-bin.000018**
+
+```sql
+mysql -uroot -p -e 'USE test; INSERT INTO users(FirstName) VALUES ("User_new_1"),("User_new_2"),("User_new_3");'
+```
+---
+повторив  выполнение `flush-logs` мы запишем данные в следующий журнал , тем самым каждый буде содержать только новые данные.
+---
+
+посмотрим вновь созданые журналы:
+
+```sql
+ls -la /var/log/mysql/
+```
+
+ ![img4.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson8/images/img4.JPG)
 
 
-mysqlbinlog /var/log/mysql/mysql-bin.000002 | mysql -uroot -p mydb
 
+6) восстановление из инкрементной копии 
+
+Удаляем базу данных 
+
+```sql
+mysql -uroot -p -e 'drop database test;'
+
+```
+
+Восстановливаем данные из полной копии:
+
+**создаем базу данных **
+
+`mysql -uroot -p -e 'CREATE database test; SHOW databases;'`
+
+**восстанавливаем полную копию**
+
+`mysql -u root -p test < ./dump/full_backup.sql`
+
+проверим базу данных, подключимся к MySQL `mysql -uroot -p`
+
+`mysql -uroot -p -e 'USE test; SELECT * FROM users;'`
+
+
+ ![img5.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson8/images/img5.JPG)
+ 
+
+7) Восстановление данных MySQL из двоичного журнала, сохраненного в файле mysql-bin.000002.
+
+**Инкрементная резервная копия **
+
+```sql
+ls -la /var/log/mysql/
+
+mysqlbinlog /var/log/mysql/mysql-bin.000019 | mysql -uroot -p test
+
+```
+
+ ![img6.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson8/images/img6.JPG)
 
 
 
