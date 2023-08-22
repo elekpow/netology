@@ -87,9 +87,6 @@ select * from test_table;
 
 
 
-
-
-
 ---
 
 ### Задание 2*
@@ -102,22 +99,55 @@ select * from test_table;
 *1) Скриншот созданной базы данных.*
 *2) Код Terraform, создающий базу данных.*
 
----
-
-Задания, помеченные звёздочкой, — дополнительные, то есть не обязательные к выполнению, и никак не повлияют на получение вами зачёта по этому домашнему заданию. Вы можете их выполнить, если хотите глубже шире разобраться в материале.
-
 
 ---
 
 **Выполнение задания 2.**
 
 
+- Создаем кластер через Terraform:
+
+Настойки  провайдера [main.tf](https://github.com/elekpow/netology/blob/main/reldb/lesson9/files/main.tf) 
+
+Переменные [variables.tf](https://github.com/elekpow/netology/blob/main/reldb/lesson9/files/variables.tf) 
+
+Конфигурации ресурсов [cluster.tf](https://github.com/elekpow/netology/blob/main/reldb/lesson9/files/cluster.tf) 
 
 
+Для подключения к PostgreSQL установим Пакет postgresql-client
 
+```
+sudo apt install postgresql-client
+```
 
+Из настроек  подключения в YandexCloud:
 
+1) установка сертификата
+```
+mkdir -p ~/.postgresql 
+wget "https://storage.yandexcloud.net/cloud-certs/CA.pem"  --output-document ~/.postgresql/root.crt 
+chmod 0600 ~/.postgresql/root.crt
+```
 
+2) подключение к базе данных
+```sql
+psql "host=rc1a-o8u1jsbx3mjiukvh.mdb.yandexcloud.net,rc1a-yzvvhbo353wnabyi.mdb.yandexcloud.net \
+    port=6432 \
+    sslmode=verify-full \
+    dbname=<dbname> \
+    user=<username> \
+    target_session_attrs=read-write"
+```
 
+<username> - имя пользователя заданое при конфигурировании terraform.
+<dbname> - название базы данных
+port - порт для подключения к базе данных 
+host - Имя хоста присваемое виртуальной машине
 
----
+Проверяем работоспособность репликации
+
+ ![terminal.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson9/images/terminal.JPG)
+ 
+Созданый кластер
+ 
+ ![elvm.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson9/images/elvm.JPG)
