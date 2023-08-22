@@ -147,7 +147,7 @@ psql "host=rc1a-o8u1jsbx3mjiukvh.mdb.yandexcloud.net,rc1a-yzvvhbo353wnabyi.mdb.y
 
 **host** - Имя хоста присваемое виртуальной машине
 
-Проверяем работоспособность репликации
+Проверяем работоспособность 
 
  ![terminal.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson9/images/terminal.JPG)
  
