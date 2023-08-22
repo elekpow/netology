@@ -177,7 +177,9 @@ mysqladmin -uroot -p flush-logs
 mysql -uroot -p -e 'USE test; INSERT INTO users(FirstName) VALUES ("User_new_1"),("User_new_2"),("User_new_3");'
 ```
 ---
+
 повторив  выполнение `flush-logs` мы запишем данные в следующий журнал , тем самым каждый буде содержать только новые данные.
+
 ---
 
 посмотрим вновь созданые журналы:
