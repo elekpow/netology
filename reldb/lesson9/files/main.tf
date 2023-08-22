@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "yandex" {
-  zone = "${var.zone_a}"
+  zone = "ru-central1-a"
   token                    = ""
   cloud_id                 = ""
   folder_id                = ""

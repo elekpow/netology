@@ -107,7 +107,6 @@ select * from test_table;
 
 - Создаем кластер через Terraform:
 
-Настойки  провайдера [main.tf](https://github.com/elekpow/netology/blob/main/reldb/lesson9/files/main.tf) 
 
 Переменные [variables.tf](https://github.com/elekpow/netology/blob/main/reldb/lesson9/files/variables.tf) 
 

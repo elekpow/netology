@@ -13,19 +13,17 @@ resource "yandex_mdb_postgresql_cluster" "elvm" {
       disk_size          = "10"
     }
   }
-  
-   
+     
   timeouts {
-    create = "1h30m" # Полтора часа
-    update = "2h"    # 2 часа
-    delete = "30m"   # 30 минут
+    create = "1h30m" 
+    update = "2h"    
+    delete = "30m"  
   }
   
 
   host {
     assign_public_ip = true 
     zone      = "ru-central1-a"
-    #name      = "elvm-host-a"
     subnet_id = yandex_vpc_subnet.elvsubnet-a.id
   }
   
@@ -33,7 +31,6 @@ resource "yandex_mdb_postgresql_cluster" "elvm" {
    host {
     assign_public_ip = true 
     zone      = "ru-central1-b"
-    #name      = "elvm-host-b"
     subnet_id = yandex_vpc_subnet.elvsubnet-b.id
   }
   
