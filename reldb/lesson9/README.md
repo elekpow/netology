@@ -129,7 +129,8 @@ chmod 0600 ~/.postgresql/root.crt
 ```
 
 2) подключение к базе данных
-```sql
+
+```
 psql "host=rc1a-o8u1jsbx3mjiukvh.mdb.yandexcloud.net,rc1a-yzvvhbo353wnabyi.mdb.yandexcloud.net \
     port=6432 \
     sslmode=verify-full \
@@ -138,13 +139,13 @@ psql "host=rc1a-o8u1jsbx3mjiukvh.mdb.yandexcloud.net,rc1a-yzvvhbo353wnabyi.mdb.y
     target_session_attrs=read-write"
 ```
 
-<username> - имя пользователя заданое при конфигурировании terraform.
+**username** - имя пользователя заданое при конфигурировании terraform.
 
-<dbname> - название базы данных
+**dbname** - название базы данных
 
-port - порт для подключения к базе данных 
+**port** - порт для подключения к базе данных 
 
-host - Имя хоста присваемое виртуальной машине
+**host** - Имя хоста присваемое виртуальной машине
 
 Проверяем работоспособность репликации
 
