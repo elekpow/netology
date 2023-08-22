@@ -157,7 +157,7 @@ ls -la ./dump/
 
 ```
 
-при создании полного бекапа используем флаг ** --flush-logs**, он закроет текущий журнал (mysql-bin.000001) и создаст новый (mysql-bin.000002).
+при создании полного бекапа используем флаг ** --flush-logs**, он закроет текущий журнал например:(mysql-bin.000001) и создаст новый (mysql-bin.000002).
 
 
  ![img3.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson8/images/img3.JPG)
@@ -169,8 +169,9 @@ ls -la ./dump/
 mysqladmin -uroot -p flush-logs
 
 ```
+в данном случае имеем журнал **mysql-bin.000019**
 
-если внести данные , то они запишуться в новый журнал **mysql-bin.000018**
+если внести данные , то они запишуться в новый журнал **mysql-bin.000019**
 
 ```sql
 mysql -uroot -p -e 'USE test; INSERT INTO users(FirstName) VALUES ("User_new_1"),("User_new_2"),("User_new_3");'
@@ -189,7 +190,7 @@ ls -la /var/log/mysql/
 
 
 
-6) восстановление из инкрементной копии 
+6) восстановление данных 
 
 Удаляем базу данных 
 
@@ -215,8 +216,7 @@ mysql -uroot -p -e 'drop database test;'
 
  ![img5.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson8/images/img5.JPG)
  
-
-7) Восстановление данных MySQL из двоичного журнала, сохраненного в файле mysql-bin.000002.
+ Восстановление данных MySQL из двоичного журнала, сохраненного в файле mysql-bin.000019.
 
 **Инкрементная резервная копия**
 
