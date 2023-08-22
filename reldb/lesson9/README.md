@@ -74,6 +74,22 @@ select * from test_table;
 
 **Выполнение задания 1.**
 
+
+База данных
+
+ ![db.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson9/images/db.JPG)
+
+
+Результата вывода 
+
+
+ ![select.JPG](https://github.com/elekpow/netology/blob/main/reldb/lesson9/images/select.JPG)
+
+
+
+
+
+
 ---
 
 ### Задание 2*
