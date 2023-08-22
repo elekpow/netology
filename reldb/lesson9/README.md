@@ -139,8 +139,11 @@ psql "host=rc1a-o8u1jsbx3mjiukvh.mdb.yandexcloud.net,rc1a-yzvvhbo353wnabyi.mdb.y
 ```
 
 <username> - имя пользователя заданое при конфигурировании terraform.
+
 <dbname> - название базы данных
+
 port - порт для подключения к базе данных 
+
 host - Имя хоста присваемое виртуальной машине
 
 Проверяем работоспособность репликации
