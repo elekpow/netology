@@ -26,7 +26,7 @@
 
 **Свидетельство о прохождении курса:**
 
-<img src="https://github.com/elekpow/netology/blob/main/reldb/images/cert.jpg" alt="cert.jpg" border="0" width="500">
+<img src="https://github.com/elekpow/netology/blob/main/reldb/images/cert.JPG" alt="cert.jpg" border="0" width="500">
 
 
 
