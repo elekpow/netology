@@ -89,8 +89,9 @@ sudo nmap -sV --script vulners 192.168.56.114
 
 
 
-После отработки скрипта , nmap выведет все найденные уязвимости.
+**После отработки скрипта , nmap выведет все найденные уязвимости.**
 
+пример вывода:
 
 ![vulners.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson1/images/vulners.JPG)
 
