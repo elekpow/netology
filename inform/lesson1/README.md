@@ -85,7 +85,8 @@ OpenSSH 5.6 и более ранних версий, когда включен J
 ```
 
 
-Скриншот вывода найденых уязвимостей:
+После отработки скрипта , nmap выведет все найденные уязвимости.
+
 
 ![vulners.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson1/images/vulners.JPG)
 
