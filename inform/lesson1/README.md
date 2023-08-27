@@ -115,26 +115,16 @@ sudo nmap -sV --script vulners 192.168.56.114
 
 **Выполнение задания 2.**
 
+Wireshark - сетевой анализатор, для анализа трафика проходящего через сетевой интерфейс.
 
-```
- sudo apt install wireshark
-```
-Проведём сканирование Wireshark
+Установка: `sudo apt install wireshark`
 
-[192.168.56.114.pcapng](https://github.com/elekpow/netology/blob/main/inform/lesson1/files/192.168.56.114.pcapng)
+Воспользуемся уже установленным в Kalilinux. Проведм сканирование и запишем сессию. Запись Wireshark: [Metasploitable.pcapng](https://github.com/elekpow/netology/blob/main/inform/lesson1/files/Metasploitable.pcapng)
 
-
-<img src="https://github.com/elekpow/netology/blob/main/inform/lesson1/images/wireshark.JPG" alt="wireshark.JPG" width="300">
-
-
-
-
-
+<img src="https://github.com/elekpow/netology/blob/main/inform/lesson1/images/wireshark.JPG" alt="wireshark.JPG" width="500">
 
 По умолчанию Nmap осуществляет SYN сканирование. `nmap -sS` (TCP SYN сканирование)
 Этот тип сканирования заменяет сканирование с использованием соединения для пользователей не имеющих достаточных привилегий.
-
-
 
 
 
