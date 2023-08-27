@@ -38,8 +38,7 @@
 ![nmap1.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson1/images/nmap1.JPG)
 
 
-
-Для поиска уявзимостей воспольземся скриптом **nmap_vulners** для nmap.
+На сайте https://vulners.com/ (База данных уязвимостей и поисковая система) есть скрипт NSE  - **nmap_vulners**  для **nmap**.
 Скрипт NSE использует информацию об известных сервисах для предоставления данных об уязвимостях. 
 
 [скрипт nmap_vulners](https://vulners.com/plugins#offensive)
