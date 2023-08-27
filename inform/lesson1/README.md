@@ -35,7 +35,7 @@
 
 `sudo nmap -sV 192.168.56.114`
 
-![nmap1.JPG](https://github.com/elekpow/inform/blob/main/images/nmap1.JPG)
+![nmap1.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson1/images/nmap1.JPG)
 
 
 
@@ -87,9 +87,7 @@ OpenSSH 5.6 и более ранних версий, когда включен J
 
 Скриншот вывода найденых уязвимостей:
 
-![vulners.JPG](https://github.com/elekpow/inform/blob/main/images/vulners.JPG)
-
-
+![vulners.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson1/images/vulners.JPG)
 
 
 
