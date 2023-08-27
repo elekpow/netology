@@ -111,11 +111,29 @@ sudo nmap -sV --script vulners 192.168.56.114
 
 *Приведите ответ в свободной форме.*
 
-
-
 ---
 
 **Выполнение задания 2.**
+
+
+```
+ sudo apt install wireshark
+```
+Проведём сканирование Wireshark
+
+[192.168.56.114.pcapng](https://github.com/elekpow/netology/blob/main/inform/lesson1/files/192.168.56.114.pcapng)
+
+
+<img src="https://github.com/elekpow/netology/blob/main/inform/lesson1/images/wireshark.JPG" alt="wireshark.JPG" width="300">
+
+
+
+
+
+
+По умолчанию Nmap осуществляет SYN сканирование. `nmap -sS` (TCP SYN сканирование)
+Этот тип сканирования заменяет сканирование с использованием соединения для пользователей не имеющих достаточных привилегий.
+
 
 
 
