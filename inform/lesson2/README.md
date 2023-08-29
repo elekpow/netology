@@ -15,7 +15,7 @@
 
 **Выполнение задания 1.**
 
-```sql
+```bash
 sudo apt install ecryptfs-utils
 ```
 
