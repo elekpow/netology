@@ -15,7 +15,7 @@
 
 **Выполнение задания 1.**
 
-```properties
+```{r, engine='bash', count_lines}
 sudo apt install ecryptfs-utils
 ```
 
