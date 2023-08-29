@@ -15,7 +15,7 @@
 
 **Выполнение задания 1.**
 
-```shell
+```sh
 sudo apt install ecryptfs-utils
 ```
 
