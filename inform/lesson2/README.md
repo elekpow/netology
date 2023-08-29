@@ -15,6 +15,13 @@
 
 **Выполнение задания 1.**
 
+```javascript
+sudo apt install ecryptfs-utils
+```
+
+
+
+
 ### Задание 2
 
 1. Установите поддержку **LUKS**.
