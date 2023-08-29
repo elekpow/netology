@@ -15,7 +15,7 @@
 
 **Выполнение задания 1.**
 
-```{r, engine='bash', count_lines}
+```sql
 sudo apt install ecryptfs-utils
 ```
 
