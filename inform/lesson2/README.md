@@ -29,6 +29,8 @@ sudo adduser cryptouser
 ![user.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/user.JPG)
 
 
+useradd -m -G root user
+
 
 ---
 *можно создать пользователя и сразу же зашифровать домашнюю директорию*
@@ -69,6 +71,67 @@ Enter your login passphrase [cryptouser]:
 ---
 
 **Выполнение задания 2.**
+
+
+```
+ sudo apt install gparted
+```
+
+Установка LUKS
+
+```
+ sudo apt-get install cryptsetup
+```
+
+
+```
+sudo apt install xrdp -y 
+sudo apt update && sudo apt install xfce4 xdm xfce4-xkb-plugin language-pack-ru -y
+---
+ systemctl status xrdp.service
+
+sudo adduser user
+
+sudo adduser user ssl-cert
+
+sudo passwd -d igor
+sudo passwd  igor
+
+
+---
+
+sudo adduser user
+sudo adduser user ssl-cert
+
+sudo apt update && sudo apt install xfce4 xdm xfce4-xkb-plugin language-pack-ru -y
+
+sed -i 's/allowed_users=console/allowed_users=anybody/' /etc/X11/Xwrapper.config
+
+echo "xfce4-session" | tee ~/.xsession
+
+systemctl enable xdm.service
+
+update-locale LANG=ru_RU.UTF-8 
+
+echo 'FRAMEBUFFER=Y' >> /etc/initramfs-tools/initramfs.conf 
+
+update-initramfs -u -k `uname -r`
+
+```
+
+
+systemctl status xrdp.service
+
+sudo passwd -d igor
+
+sudo passwd  igor
+
+
+
+dd if=/dev/zero of=/tmp/disk.img bs=100M count=5
+sudo mkfs ext3 -F /tmp/disk.img
+
+sudo mount /tmp/disk.img /mnt/disk1/
 
 
 
