@@ -15,9 +15,44 @@
 
 **Выполнение задания 1.**
 
+Установка **eCryptfs**.
 ```bash
 sudo apt install ecryptfs-utils
 ```
+
+Добавим пользователя cryptouser
+
+```
+sudo adduser cryptouser
+```
+
+![user.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/user.JPG)
+
+
+
+---
+*можно создать пользователя и сразу же зашифровать домашнюю директорию*
+ 
+```bash
+sudo adduser --encrypt-home cryptouser
+```
+---
+
+Шифрование домашнего каталога пользователя
+
+```bash
+igor@elvm:~$ sudo ecryptfs-migrate-home -u cryptouser
+
+INFO:  Checking disk space, this may take a few moments.  Please be patient.
+INFO:  Checking for open files in /home/cryptouser
+Enter your login passphrase [cryptouser]:
+```
+![user-crypto.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/user-crypto.JPG)
+
+
+![user-crypto_home.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/user-crypto_home.JPG)
+
+
 
 
 
