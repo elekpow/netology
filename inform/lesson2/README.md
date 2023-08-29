@@ -15,7 +15,7 @@
 
 **Выполнение задания 1.**
 
-```javascript
+```console
 sudo apt install ecryptfs-utils
 ```
 
