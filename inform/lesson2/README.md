@@ -73,69 +73,97 @@ Enter your login passphrase [cryptouser]:
 **Выполнение задания 2.**
 
 
+Развернем тестовую виртуальную машину в YandexCloud через Terraform, и подключим дополнительный диск.
+
+
+Конфигурация Terraform для создания диска на 1Tb:
+
 ```
- sudo apt install gparted
+# дополнительный диск
+
+resource "yandex_compute_disk" "myhdd" {
+  name       = "myhdd"
+  type       = "network-hdd"
+  zone       = "ru-central1-a"
+  size       = 1
+}
+
+```
+
+Программа **gparted** имеет графический интерфейс, для этого также установим на виртуальную машину **xrdp**  и **xfce4**
+
+```bash 
+sudo apt update
+sudo apt install gparted -y
+sudo apt install xrdp -y 
+sudo apt install xfce4 xdm xfce4-xkb-plugin language-pack-ru -y
+
+ systemctl status xrdp.service
+
 ```
 
 Установка LUKS
 
 ```
- sudo apt-get install cryptsetup
+sudo apt-get install cryptsetup
+ 
 ```
 
+*для основного пользователя (имеющего права root) зададим пароль `sudo passwd igor`*
 
-```
-sudo apt install xrdp -y 
-sudo apt update && sudo apt install xfce4 xdm xfce4-xkb-plugin language-pack-ru -y
+подключаемся к виртуальной машине  через RDP 
+
+
+![xrdp1.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/xrdp1.JPG)
+
+
+размечаем  раздел диска на 100 Мб 
+
+![xrdp2.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/xrdp1.JPG)
+
+
+Зашифруем созданый раздел 
+
+` sudo cryptsetup luksFormat /dev/vdb1 `
+
+![crypt.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/crypt.JPG)
+
+
+![xrdp3.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/xrdp3.JPG)
+
+
+В **gparted** в меню есть пункт "Open Encryption". При выборе этого пункта будет запрошена парольная фраза. 
+
+![xrdp4.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/xrdp4.JPG)
+
+Так мы получаем доступ к зашифрованому разделу
+
+![xrdp5.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/xrdp5.JPG)
+
+
+Закрыть зашифрованый раздел:
+
+![xrdp6.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/xrdp6.JPG)
+
+
+Информация о зашифрованном разделе:
+
+![crypt-luks.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/crypt-luks.JPG)
+
+
 ---
- systemctl status xrdp.service
 
-sudo adduser user
+при работе в терминале можно зашифрованый раздел, а также примонтировать:
 
-sudo adduser user ssl-cert
+![crypt-open.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/crypt-open.JPG)
 
-sudo passwd -d igor
-sudo passwd  igor
+
+![crypt-mount.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/crypt-mount.JPG)
+
+
 
 
 ---
-
-sudo adduser user
-sudo adduser user ssl-cert
-
-sudo apt update && sudo apt install xfce4 xdm xfce4-xkb-plugin language-pack-ru -y
-
-sed -i 's/allowed_users=console/allowed_users=anybody/' /etc/X11/Xwrapper.config
-
-echo "xfce4-session" | tee ~/.xsession
-
-systemctl enable xdm.service
-
-update-locale LANG=ru_RU.UTF-8 
-
-echo 'FRAMEBUFFER=Y' >> /etc/initramfs-tools/initramfs.conf 
-
-update-initramfs -u -k `uname -r`
-
-```
-
-
-systemctl status xrdp.service
-
-sudo passwd -d igor
-
-sudo passwd  igor
-
-
-
-dd if=/dev/zero of=/tmp/disk.img bs=100M count=5
-sudo mkfs ext3 -F /tmp/disk.img
-
-sudo mount /tmp/disk.img /mnt/disk1/
-
-
-
-
 
 ### Задание 3 *
 
