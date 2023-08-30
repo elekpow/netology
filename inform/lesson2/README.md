@@ -179,3 +179,42 @@ sudo apt-get install cryptsetup
 
 **Выполнение задания 3.**
 
+AppArmor - это система управления доступом к файлам на основе имен (Mandatory Access Control).
+Контроль доступа для программы осуществляется на основе файла профиля. Профили могут работать в двух режимах: "Enforce" и "Complain"
+Для каждой программы, которую нужно контролировать создается файл профиля, если его нет или он отключен, программа выполняется без ограничений.
+
+---
+
+Установка **AppArmor**
+
+```
+sudo apt install apparmor-profiles 
+sudo apt install apparmor-utils
+sudo apt install apparmor-profiles-extra
+
+sudo apparmor_status
+
+```
+
+Загружено 54 профилей, 36  находятся в **enforce** режиме 
+
+![AppArmor.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/AppArmort.JPG)
+
+
+выполним из примера лекции, попробуем заменить на другую программу (например вирусная программа подменяет оригинальный файл). Подменяем программу **man** на **ping** 
+
+```
+ sudo cp /usr/bin/man /usr/bin/man1  #сохраним оригинальный файл
+ sudo cp /bin/ping /usr/bin/man     
+  
+ man 127.0.0.1 # проверяем работу
+  
+```
+
+Включаем профиль : `sudo aa-complain man` и переходим в режим обучения
+
+Включаем профиль :`sudo aa-enforce man` и происходит "блокировка" программы согласно профиля 
+
+
+![man-complain.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/man-complain.JPG)
+
