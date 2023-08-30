@@ -198,7 +198,7 @@ sudo apparmor_status
 
 Загружено 54 профилей, 36  находятся в **enforce** режиме 
 
-![AppArmor.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/AppArmort.JPG)
+![AppArmor.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/AppArmor.JPG)
 
 
 выполним из примера лекции, попробуем заменить на другую программу (например вирусная программа подменяет оригинальный файл). Подменяем программу **man** на **ping** 
