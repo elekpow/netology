@@ -95,7 +95,7 @@ sudo tail -f /var/log/suricata/fast.log
 ```
 
 
-![suricata-fastlog.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/suricata-fastlog.JPG)
+![suricata-fastlog.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/suricata-fastlog.JPG)
 
 
 **fail2ban**
