@@ -168,7 +168,7 @@ Status for the jail: ssh
 
 **sudo nmap -sV 192.168.56.102**
 
-![scan-nmap-sV.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/sscan-nmap-sV.JPG)
+![scan-nmap-sV.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/scan-nmap-sV.JPG)
 
 
 
