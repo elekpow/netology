@@ -37,15 +37,140 @@
 
 **Выполнение задания 1.**
 
+Установка зависимостей
+```
 sudo apt -y install libpcre3 libpcre3-dev build-essential autoconf automake libtool libpcap-dev libnet1-dev libyaml-0-2 libyaml-dev zlib1g zlib1g-dev libmagic-dev libcap-ng-dev libjansson-dev pkg-config libnetfilter-queue-dev geoip-bin geoip-database geoipupdate apt-transport-https
+```
+
+Установка suricata и fail2ban  
+
+```
+sudo apt-get install suricata
+
+sudo apt-get install fail2ban
+
+```
+
+**suricata**
+
+После завершения установки Suricata нужно настроить интерфейсы, в `/etc/suricata/suricata.yaml`
+
+Интерфейсы могут быть установлены в разделе **af-packets**
+
+Настриваем сеть: 
+
+в файле `/etc/suricata/suricata.yaml` изменим значение
+
+```
+HOME_NET: "[192.168.56.100/24]"
+
+EXTERNAL_NET: "any"
+
+```
+
+Перезапустим suricata
+```
+sudo systemctl restart suricata
+```
+
+смотрим лог-файлы:
+```
+sudo tail -f /var/log/suricata/suricata.log
+sudo tail -f /var/log/suricata/stats.log
+```
+
+запуск `sudo suricata -c /etc/suricata/suricata.yaml -i <interface>`
+
+Осуществим с помошью Nmap SYN сканирование. 
+Выполним его со второй машины Kali linux:
+
+```
+sudo nmap -sS 192.168.56.114 
+```
+
+Проверяем логи Suricata Fast.log, в них содержатся записи о быстрых алертах, которые были обнаружены системой обнаружения вторжений Suricata. 
+
+```
+sudo tail -f /var/log/suricata/fast.log
+```
 
 
+![suricata-fastlog.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson2/images/suricata-fastlog.JPG)
 
 
-sudo -y apt-get install fail2ban
+**fail2ban**
+
+настроим fail2ban: `/etc/fail2ban/jail.d/default.conf`
+
+```
+[DEFAULT]
+maxretry = 4
+findtime = 480
+bantime = 720
+action = iptables
+ignoreip = 127.0.0.1/8 192.168.56.1
+```
+maxretry — количество действий, которые разрешено совершить до бана.
+findtime — время в секундах, в течение которого учитывается maxretry;
+bantime — время, на которое будет блокироваться IP-адрес;
+action — действия, которое будет выполняться, если Fail2ban обнаружит активность, соответствующую критериям поиска;
+ignoreip — игнорировать защиту, если запросы приходят с перечисленных адресов.
 
 
- sudo tail /var/log/suricata/stats.log
+создать новое правило: `/etc/fail2ban/jail.d/service.conf`
+
+```
+[ssh]
+enabled = true
+port = ssh
+filter = sshd
+action = iptables[name=sshd, port=ssh, protocol=tcp]
+logpath = /var/log/auth.log
+maxretry = 10
+findtime = 600
+```
+
+Перезапустим Fail2Ban `sudo systemctl restart fail2ban`
+
+список заблокированых адресов: `sudo fail2ban-client status`
+
+получить статистику по списку  **ssh** : `sudo fail2ban-client status ssh `
+
+```
+Status for the jail: ssh
+|- Filter
+|  |- Currently failed: 0
+|  |- Total failed:     0
+|  `- File list:        /var/log/auth.log
+`- Actions
+   |- Currently banned: 0
+   |- Total banned:     0
+   `- Banned IP list:
+```
+
+посмотреть список  адресов можно командой `sudo fail2ban-client banned`
+
+Удаление адреса из списка:` fail2ban-client set <имя правила> unbanip <IP-адрес> `
+
+---
+
+**sudo nmap -sA 192.168.56.102**
+
+![scan-nmap-sA.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/scan-nmap-sA.JPG)
+
+**sudo nmap -sT 192.168.56.102**
+
+![scan-nmap-sT.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/scan-nmap-sT.JPG)
+
+**sudo nmap -sS 192.168.56.102**
+
+![scan-nmap-sS.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/scan-nmap-sS.JPG)
+
+**sudo nmap -sV 192.168.56.102**
+
+![scan-nmap-sV.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/sscan-nmap-sV.JPG)
+
+
 
 
 ### Задание 2
