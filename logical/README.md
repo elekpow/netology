@@ -7,3 +7,4 @@
 
 - [**Использование логических операторов**](https://github.com/elekpow/netology/blob/main/logical/lesson2.md).
 
+- [**Построение алгоритмов**](https://github.com/elekpow/netology/blob/main/logical/lesson3.md).
