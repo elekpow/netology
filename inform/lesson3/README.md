@@ -240,7 +240,7 @@ Status for the jail: ssh
 
 3) в логах Suricata видна подозрительная активность, сканирование 22 порта
 
-![log-surikata.JPG.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/log-surikata.JPG.JPG)
+![log-surikata.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/log-surikata.JPG)
 
 
 
