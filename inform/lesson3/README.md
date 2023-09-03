@@ -154,19 +154,34 @@ Status for the jail: ssh
 
 ---
 
+Было обнаружено , что запущена служба ssh , порт 22 , версия OpenSSH 7.9p1, Debian 10
+
+![kali-scan.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/kali-scan.JPG)
+
+
+было произведено полное сканирование всех портов
+
 **sudo nmap -sA 192.168.56.102**
+
+В сканировании ACK Nmap отправляет пакеты с установленным только флагом ACK (без флагов SYN, FIN или RST) на целевые порты. 
 
 ![scan-nmap-sA.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/scan-nmap-sA.JPG)
 
 **sudo nmap -sT 192.168.56.102**
 
+Это сканирование версий сервисов
+
 ![scan-nmap-sT.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/scan-nmap-sT.JPG)
 
 **sudo nmap -sS 192.168.56.102**
 
+Это сканирование TCP-портов с использованием сканирования SYN
+
 ![scan-nmap-sS.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/scan-nmap-sS.JPG)
 
 **sudo nmap -sV 192.168.56.102**
+
+Это сканирование версий сервисов
 
 ![scan-nmap-sV.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/scan-nmap-sV.JPG)
 
@@ -202,4 +217,30 @@ Status for the jail: ssh
 ------
 
 **Выполнение задания 2.**
+
+
+Проверяем как работает программа **hydra**. Порт доступен для подключения, пароли подобраны верно.
+
+![kali-hydra-test.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/kali-hydra-test.JPG)
+
+Теперь включим программу Fail2Ban, в настройках  установим **enabled**  в **true**.
+
+Перезапустим Fail2Ban `sudo systemctl restart fail2ban`
+
+проверяем: 
+
+1) со стороны kali-linux атака не удалась 
+
+![kali-hydra-status.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/kali-hydra-status.JPG)
+
+2) со стороны атакуемой машины: file2ban обнаружил и заблокировал ip c которого поступали запросы на порт ssh 
+
+![status-file2ban.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/status-file2ban.JPG)
+
+
+3) в логах Suricata видна подозрительная активность, сканирование 22 порта
+
+![log-surikata.JPG.JPG](https://github.com/elekpow/netology/blob/main/inform/lesson3/images/log-surikata.JPG.JPG)
+
+
 
